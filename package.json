@@ -2,11 +2,11 @@
   "name": "fysio-frontend",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "ng": "Fysio-Frontend/node_modules/.bin/ng",
+    "start": "Fysio-Frontend/node_modules/.bin/ng serve",
+    "build": "Fysio-Frontend/node_modules/.bin/ng build",
+    "watch": "Fysio-Frontend/node_modules/.bin/ng build --watch --configuration development",
+    "test": "Fysio-Frontend/node_modules/.bin/ng test"
   },
   "private": true,
   "dependencies": {
