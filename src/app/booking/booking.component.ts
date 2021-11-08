@@ -28,7 +28,7 @@ export class BookingComponent implements OnInit {
     const mockBooking: BookingDTO = {
       date: "2021-11-02",
       time: "11.00",
-      service: "labotomy",
+      service: "circumcision",
       email: "test@email.com",
       phone: 12345678,
     }

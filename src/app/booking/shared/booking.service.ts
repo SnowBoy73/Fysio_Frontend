@@ -15,7 +15,7 @@ export class BookingService {
 
   postBooking(bookingDto: BookingDTO): void {
     console.log('bookings ', bookingDto.email);
-    this.socket.emit('bookings', bookingDto.email);
+    this.socket.emit('bookings', bookingDto.service);
   }
 /*
   postBooking(bookingDto: BookingDTO): void {
