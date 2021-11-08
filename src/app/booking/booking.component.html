@@ -1,1 +1,10 @@
 <p>booking works!</p>
+
+<button  (click)="postBooking()">postBooking</button>
+
+<div *ngIf="!socketId"
+     class="warn-text-colour"
+     style="font-family: cursive"
+     style="font-size: 14px">
+  connecting...  {{socketId}}
+</div>
