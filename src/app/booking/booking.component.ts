@@ -12,6 +12,7 @@ import {take, takeUntil} from 'rxjs/operators';
 })
 export class BookingComponent implements OnInit {
   socketId: string | undefined;
+  unsubscribe$ = new Subject();
 
   constructor(
     private bookingService: BookingService
@@ -21,16 +22,60 @@ export class BookingComponent implements OnInit {
     console.log('Booking Component Initialised');
     this.bookingService.connect(); // MUY IMPORTANTÉ!!
 
-   
+    //
+    this.bookingService.listenForNewBooking()
+      .pipe(
+        takeUntil(this.unsubscribe$)
+      )
+      .subscribe(booking => {
+        console.log('booking received');
+  /*      if (-- booking falls on day(s) being viewed --) {
+          console.log( 'New booking = ', booking);
+
+          if (-- get correct date if needed--) {
+            console.log( 'booking added to {that date}');
+// Push booking on bookingsDate array (of bookings)
+        //    this.bookingDate.push(booking);
+          }
+        }
+*/
+      });
+
+
+
+    this.bookingService.listenForConnect()
+      .pipe(
+        takeUntil(this.unsubscribe$)
+      )
+      .subscribe((id) => {
+        console.log('connect id', id); //
+        this.socketId = id;
+      });
+    this.bookingService.listenForDisconnect()
+      .pipe(
+        takeUntil(this.unsubscribe$)
+      )
+      .subscribe((id) => {
+        console.log('disconnect id', id); //
+        this.socketId = id;
+      });
 
   }
 
-  postBooking() {
+  ngOnDestroy(): void {
+    console.log('Booking Component Destroyed');
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+    this.bookingService.disconnect();  // Removed to stay connected between routes
+    //this.store.dispatch(new StopListeningForClients());
+  }
 
+
+  postBooking() {
     const mockBooking: BookingDTO = {
       date: "2021-11-02",
-      time: "15.00",
-      service: "circumcision2",
+      time: "18.00",
+      service: "circumcision3",
       email: "real@email.com",
       phone: 12345678,
     }

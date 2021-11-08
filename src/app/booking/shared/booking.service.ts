@@ -17,6 +17,8 @@ export class BookingService {
     this.socket.emit('postBooking', bookingDto);
   }
 
+
+
   listenForNewBooking(): Observable<BookingModel> {
     return this.socket
       .fromEvent<BookingModel>('newBooking');
@@ -38,6 +40,7 @@ export class BookingService {
       .fromEvent<string>('error');
   }
 
+ */
 
   listenForConnect(): Observable<string> {
     return this.socket
@@ -58,7 +61,7 @@ export class BookingService {
         })
       );
   }
-  */
+
 
   disconnect(): void{
     console.log('service Disconnect called');
