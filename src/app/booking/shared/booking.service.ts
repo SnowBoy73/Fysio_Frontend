@@ -12,12 +12,6 @@ export class BookingService {
 
   constructor(private socket: Socket) { }
 
-
-  postBookingTEST(bookingDto: BookingDTO): void {
-    console.log('bookings ', bookingDto.email);
-    this.socket.emit('bookings', bookingDto.service);
-  }
-
   postBooking(bookingDto: BookingDTO): void {
     console.log('postBooking ', bookingDto.email);
     this.socket.emit('postBooking', bookingDto);

@@ -21,13 +21,15 @@ export class BookingComponent implements OnInit {
     console.log('Booking Component Initialised');
     this.bookingService.connect(); // MUY IMPORTANTÉ!!
 
+   
+
   }
 
   postBooking() {
 
     const mockBooking: BookingDTO = {
       date: "2021-11-02",
-      time: "11.00",
+      time: "15.00",
       service: "circumcision2",
       email: "real@email.com",
       phone: 12345678,
@@ -35,16 +37,4 @@ export class BookingComponent implements OnInit {
     this.bookingService.postBooking(mockBooking);
   }
 
-  postBookingTEST() {
-    const mockBooking: BookingDTO = {
-      date: "2021-11-02",
-      time: "11.00",
-      service: "fluff",
-      email: "test@email.com",
-      phone: 12345678,
-    }
-    //this.bookingService.postBookingTEST(mockBooking);
-    this.bookingService.postBookingTEST(mockBooking);
-
-  }
 }
