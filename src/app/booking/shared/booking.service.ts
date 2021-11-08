@@ -13,21 +13,21 @@ export class BookingService {
   constructor(private socket: Socket) { }
 
 
-  postBooking(bookingDto: BookingDTO): void {
+  postBookingTEST(bookingDto: BookingDTO): void {
     console.log('bookings ', bookingDto.email);
     this.socket.emit('bookings', bookingDto.service);
   }
-/*
+
   postBooking(bookingDto: BookingDTO): void {
     console.log('postBooking ', bookingDto.email);
-    this.socket.emit('addBooking', bookingDto);
+    this.socket.emit('postBooking', bookingDto);
   }
 
   listenForNewBooking(): Observable<BookingModel> {
     return this.socket
       .fromEvent<BookingModel>('newBooking');
   }
-
+/*
   requestSchedule(selectedDate: string): void {
     console.log('requestSchedule called');
     this.socket.emit('requestSchedule', selectedDate); // date, maybe date object

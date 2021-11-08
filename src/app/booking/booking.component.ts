@@ -19,7 +19,7 @@ export class BookingComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Booking Component Initialised');
-    //this.bookingService.connect(); // MUY IMPORTANTÉ!!
+    this.bookingService.connect(); // MUY IMPORTANTÉ!!
 
   }
 
@@ -28,11 +28,23 @@ export class BookingComponent implements OnInit {
     const mockBooking: BookingDTO = {
       date: "2021-11-02",
       time: "11.00",
-      service: "circumcision",
-      email: "test@email.com",
+      service: "circumcision2",
+      email: "real@email.com",
       phone: 12345678,
     }
     this.bookingService.postBooking(mockBooking);
+  }
+
+  postBookingTEST() {
+    const mockBooking: BookingDTO = {
+      date: "2021-11-02",
+      time: "11.00",
+      service: "fluff",
+      email: "test@email.com",
+      phone: 12345678,
+    }
+    //this.bookingService.postBookingTEST(mockBooking);
+    this.bookingService.postBookingTEST(mockBooking);
 
   }
 }

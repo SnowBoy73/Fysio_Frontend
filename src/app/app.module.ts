@@ -12,7 +12,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {NgxsModule} from '@ngxs/store';
 //import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 
-//const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+//const config: SocketIoConfig = { url: 'http://localhost:3004', options: {} };
 const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
 
 
