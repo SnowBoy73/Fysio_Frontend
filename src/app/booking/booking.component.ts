@@ -72,14 +72,21 @@ export class BookingComponent implements OnInit {
 
 
   postBooking() {
+    const bookingPeriods: BookingDTO[] = [];
+    // need to create multiple bookings for 1 hour + bookings
     const mockBooking: BookingDTO = {
       date: "2021-11-02",
-      time: "18.00",
+      time: "9:00",
       service: "circumcision3",
       email: "real@email.com",
       phone: 12345678,
+      address: "11 Blah St",
+      city: "Cooltown",
+      postcode: 11223344,
+      notes: "Do I get a happy ending?",
     }
-    this.bookingService.postBooking(mockBooking);
+    bookingPeriods.push(mockBooking);  // mock
+    this.bookingService.postBooking(bookingPeriods);
   }
 
 }

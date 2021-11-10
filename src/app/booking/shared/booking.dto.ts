@@ -4,4 +4,8 @@ export interface BookingDTO {
   service: string;
   email: string;
   phone: number;
+  address: string;
+  city: string;
+  postcode: number;
+  notes: string;
 }

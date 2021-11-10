@@ -12,9 +12,9 @@ export class BookingService {
 
   constructor(private socket: Socket) { }
 
-  postBooking(bookingDto: BookingDTO): void {
-    console.log('postBooking ', bookingDto.email);
-    this.socket.emit('postBooking', bookingDto);
+  postBooking(bookingPeriods: BookingDTO[]): void {
+    console.log('postBooking ', bookingPeriods[0].email);
+    this.socket.emit('postBooking', bookingPeriods);
   }
 
 
@@ -23,23 +23,12 @@ export class BookingService {
     return this.socket
       .fromEvent<BookingModel>('newBooking');
   }
+
 /*
-  requestSchedule(selectedDate: string): void {
-    console.log('requestSchedule called');
-    this.socket.emit('requestSchedule', selectedDate); // date, maybe date object
-  }
-
-  listenForSchedule(): Observable<BookingDTO[]> {  // dateDTO??
-    return this.socket
-      .fromEvent<BookingModel[]>('schedule');
-  }
-
-
   listenForErrors(): Observable<string> {
     return this.socket
       .fromEvent<string>('error');
   }
-
  */
 
   listenForConnect(): Observable<string> {
