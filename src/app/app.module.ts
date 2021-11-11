@@ -10,6 +10,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {NgxsModule} from '@ngxs/store';
+import {MatDatepicker, MatDatepickerModule} from '@angular/material/datepicker';
 //import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 
 //const config: SocketIoConfig = { url: 'http://localhost:3004', options: {} };
@@ -32,7 +33,8 @@ const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

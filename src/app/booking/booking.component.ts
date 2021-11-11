@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {BookingService} from './shared/booking.service';
 import {BookingModel} from './shared/booking.model';
-import {BookingDTO} from './shared/booking.dto';
+import {BookingDto} from './shared/booking.dto';
 import {Observable, Subject, Subscription} from 'rxjs';
 import {take, takeUntil} from 'rxjs/operators';
+import {dateEnquiryDto} from './shared/date-enquiry.dto';
 
 @Component({
   selector: 'app-booking',
@@ -72,9 +73,9 @@ export class BookingComponent implements OnInit {
 
 
   postBooking() {
-    const bookingPeriods: BookingDTO[] = [];
+    const bookingPeriods: BookingDto[] = [];
     // need to create multiple bookings for 1 hour + bookings
-    const mockBooking: BookingDTO = {
+    const mockBooking: BookingDto = {
       date: "2021-11-02",
       time: "9:00",
       service: "circumcision3",
@@ -89,4 +90,11 @@ export class BookingComponent implements OnInit {
     this.bookingService.postBooking(bookingPeriods);
   }
 
+  postSelectedDate() {
+    let dateEnquiry: dateEnquiryDto = {
+      date: 'Thu Nov 18 2021 00:00:00 GMT+0100 (Central European Standard Time',
+      duration: 60
+    }
+    this.bookingService.postSelectedDate(dateEnquiry);
+  }
 }

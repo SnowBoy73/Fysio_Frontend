@@ -1,4 +1,4 @@
-export interface BookingDTO {
+export interface BookingDto {
   date: string;
   time: string;
   service: string;
