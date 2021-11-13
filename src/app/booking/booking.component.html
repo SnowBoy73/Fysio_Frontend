@@ -1,34 +1,57 @@
-<header>
+<body>
+<div class="stepper">
 
+  <mat-vertical-stepper linear>
+    <mat-step  #stepperOne label="vælge behandling" [completed] = stepOne>
+      <div class="step">
+      <button class="mat-button" matStepperNext (click)="selectedTreatment('helhedsorienteret')" >Helhedsorienteret fysioterapi</button>
+      </div>
+      <div class="step">
+        <button class="mat-button"(click)="selectedTreatment('akupunktur')" > Akupunktur </button>
+      </div>
+      <div class="step">
+        <button class="mat-button" matStepperNext (click)="selectedTreatment('massage')">Fysioterapeutisk massage</button>
+      </div>
+      <div class="step">
+        <button class="mat-button" (click)="selectedTreatment('træningsprogram')" >Tilrettelæggelse af træningsprogram</button>
+      </div>
+      <div class="step">
+        <button class="mat-button" (click)="selectedTreatment('optimering')" >Sport og performance optimering</button>
+      </div>
+    </mat-step>
 
-<mat-stepper orientation="vertical">
-  <mat-step>
-    <ng-template matStepLabel>Step 1</ng-template>
-    <ng-template matStepContent>
-      <p>This content was rendered lazily</p>
-      <button mat-button matStepperNext>Next</button>
-    </ng-template>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Step 2</ng-template>
-    <ng-template matStepContent>
-      <p>This content was also rendered lazily</p>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </ng-template>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Step 3</ng-template>
-    <p>This content was rendered eagerly</p>
-    <button mat-button matStepperPrevious>Back</button>
-  </mat-step>
-</mat-stepper>
-</header>
+    <!-- step 2 with if statemnts depending on selected treatment -->
+    <mat-step label="valg af længte" [completed] = stepTwo>
+     <div *ngIf="selectetTreatment === 'massage' ">
+       <div class="step">
+         <button class="mat-button" (click)="selectedTime('60')" > førstegang behandling 60 min </button>
+       </div>
+       <div class="step">
+         <button class="mat-button" (click)="selectedTime('30')" >opfylnings behandling 30 min</button>
+       </div>
+       <div class="step">
+         <button class="mat-button"  (click)="selectedTime('60')" > flere område behandling 60 min </button>
+       </div>
+     </div>
+      <div *ngIf="selectetTreatment === 'helhedsorienteret' ">
+        <div class="step">
+          <button class="mat-button" > behandling 60 min </button>
+        </div>
+      </div>
+    </mat-step>
 
-<p>booking works!</p>
+    <!-- step 3 booking calender and times -->
+    <mat-step label="vælge dag">
+      <div *ngif="selectetTime === '60'" >
 
+      </div>
+    </mat-step>
+    <mat-step label="udfyld fomelar">
+      content 1
+    </mat-step>
+  </mat-vertical-stepper>
+</div>
 <button  (click)="postBooking()">postBooking</button>
-
 <div *ngIf="!socketId"
      class="warn-text-colour"
      style="font-family: cursive"
@@ -36,3 +59,4 @@
   connecting...  {{socketId}}
 </div>
 
+</body>

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {BookingService} from './shared/booking.service';
 import {BookingModel} from './shared/booking.model';
 import {BookingDTO} from './shared/booking.dto';
 import {Observable, Subject, Subscription} from 'rxjs';
 import {take, takeUntil} from 'rxjs/operators';
+import { MatStepper } from '@angular/material/stepper';
+
 
 @Component({
   selector: 'app-booking',
@@ -13,9 +15,19 @@ import {take, takeUntil} from 'rxjs/operators';
 export class BookingComponent implements OnInit {
   socketId: string | undefined;
   unsubscribe$ = new Subject();
+  selectetTreatment: string | undefined;
+  selectetTime: string | undefined;
+
+  stepOne = false;
+  stepTwo= false;
+
+  selected: any;
+
+
 
   constructor(
     private bookingService: BookingService
+
   ) {}
 
   ngOnInit(): void {
@@ -89,4 +101,18 @@ export class BookingComponent implements OnInit {
     this.bookingService.postBooking(bookingPeriods);
   }
 
+  selectedTreatment(String: string) {
+    this.selectetTreatment = String;
+    if(this.selectetTreatment != null){
+      this.stepOne = true;
+    }
+
+  }
+
+  selectedTime(Time: string) {
+  this.selectetTime = Time;
+    if(this.selectetTime != null){
+      this.stepTwo = true;
+  }
+  }
 }

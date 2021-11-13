@@ -11,6 +11,13 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatStepperModule} from '@angular/material/stepper';
 import {NgxsModule} from '@ngxs/store';
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import {MatCardModule} from '@angular/material/card';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from "@angular/material/input";
+import {MatNativeDateModule} from "@angular/material/core";
+
+
 //import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 
 //const config: SocketIoConfig = { url: 'http://localhost:3004', options: {} };
@@ -35,7 +42,13 @@ const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
     MatButtonModule,
     MatIconModule,
     MatStepperModule,
+    CdkStepperModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
     MatSidenavModule
+
 
   ],
   providers: [],
