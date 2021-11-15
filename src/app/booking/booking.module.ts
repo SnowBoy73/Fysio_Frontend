@@ -6,6 +6,7 @@ import { BookingComponent } from './booking.component';
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
         BookingRoutingModule,
         MatStepperModule,
         MatCardModule,
+        MatInputModule,
         MatDatepickerModule
     ]
 })

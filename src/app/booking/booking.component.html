@@ -24,13 +24,13 @@
     <mat-step label="valg af længte" [completed] = stepTwo>
      <div *ngIf="selectetTreatment === 'massage' ">
        <div class="step">
-         <button class="mat-button" (click)="selectedTime('60min')" > førstegang behandling 60 min </button>
+         <button class="mat-button" (click)="selectedDuration('60min')" > førstegang behandling 60 min </button>
        </div>
        <div class="step">
-         <button class="mat-button" (click)="selectedTime('30')" >opfylnings behandling 30 min</button>
+         <button class="mat-button" (click)="selectedDuration('30')" >opfylnings behandling 30 min</button>
        </div>
        <div class="step">
-         <button class="mat-button"  (click)="selectedTime('60min')" > flere område behandling 60 min </button>
+         <button class="mat-button"  (click)="selectedDuration('60min')" > flere område behandling 60 min </button>
        </div>
      </div>
       <div *ngIf="selectetTreatment === 'helhedsorienteret' ">
@@ -43,24 +43,16 @@
 
 
     <!-- step 3 booking calender and times -->
-    <mat-step  label="vælge dag">
-      <div class="container" *ngIf="selectetTime === '60min'" >
+    <mat-step  label="vælge dag"  [completed] = stepThree >
+      <div class="container">
         <div  class="col">
         <mat-card >
           <mat-calendar (selectedChange)="selected = $event"></mat-calendar>
         </mat-card>
        </div>
-        <div class="col">
-        <mat-card>
-          <button class="mat-button"> 10.00</button>
-          <button class="mat-button"> 10.00</button>
-          <button class="mat-button"> 10.00</button>
-          <button class="mat-button"> 10.00</button>
-          <button class="mat-button"> 10.00</button>
-          <button class="mat-button"> 10.00</button>
-          <button class="mat-button"> 10.00</button>
-          <button class="mat-button"> 10.00</button>
-          <button class="mat-button"> 10.00</button>
+        <div *ngIf="selected != null" class="col">
+        <mat-card *ngFor="let item of mockarray" class="timeSlot"  >
+          <button class="mat-button" (click)="bookTime(item)">{{item}}</button>
         </mat-card>
           <p>Selected date: {{selected}}</p>
         </div>
@@ -70,12 +62,51 @@
       </div>
     </mat-step>
 
-
+    date: string;
+    time: string;
+    service: string;
+    email: string;
+    phone: number;
+    address: string;
+    city: string;
+    postcode: number;
+    notes: string;
 
 
 
     <mat-step label="udfyld fomelar">
-      content 1
+      <div>
+      <h4>valdt dag: {{selected}}</h4>
+      <h4>vladt tid: {{selectedTime}} </h4>
+      <h4>valdt service: {{selectetTreatment}} </h4>
+      </div>
+      <div class="inputForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Email Adrasse</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Telefon Nummer</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Adrasse</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>By</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>PostNummer</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Notater til behandling</mat-label>
+        <input matInput>
+      </mat-form-field>
+      </div>
+
     </mat-step>
   </mat-vertical-stepper>
 

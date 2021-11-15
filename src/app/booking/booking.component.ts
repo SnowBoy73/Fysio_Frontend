@@ -16,13 +16,19 @@ export class BookingComponent implements OnInit {
   socketId: string | undefined;
   unsubscribe$ = new Subject();
   selectetTreatment: string | undefined;
-  selectetTime: string | undefined;
+  selectetDuration: string | undefined;
 
   stepOne = false;
   stepTwo= false;
+  stepThree= false;
 
   selected: any;
   selectedDate: any;
+  selectedTime: any;
+
+  mockarray = ['9.00', '9.30','10.00','10,30','11.00']
+
+
 
 
   constructor(
@@ -110,16 +116,20 @@ export class BookingComponent implements OnInit {
     }
 
   }
-  selectedTime(Time: string) {
-  this.selectetTime = Time;
-    if(this.selectetTime != null){
+  selectedDuration(Time: string) {
+  this.selectetDuration = Time;
+    if(this.selectetDuration != null){
       this.stepTwo = true;
   }
 
 
   }
 
-
-
-
+  bookTime(item: any) {
+    if(this.selected != null)
+    {
+      this.selectedTime = item;
+      this.stepThree = true;
+    }
+  }
 }

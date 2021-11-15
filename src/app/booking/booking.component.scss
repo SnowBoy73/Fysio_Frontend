@@ -58,3 +58,13 @@ body{
   margin:auto;
   align-items: center;
 }
+.timeSlot{
+  display: flex;
+  text-align: center;
+}
+
+.inputForm{
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
