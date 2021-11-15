@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {BookingComponent} from './booking/booking.component'
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {environment} from '../environments/environment';
@@ -16,6 +17,10 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from "@angular/material/input";
 import {MatNativeDateModule} from "@angular/material/core";
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCommonModule} from '@angular/material/core';
+
 
 
 //import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
@@ -27,11 +32,12 @@ const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatCardModule,
     SocketIoModule.forRoot(config),
     NgxsModule.forRoot([], {
       developmentMode: !environment.production
@@ -43,10 +49,12 @@ const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
     MatIconModule,
     MatStepperModule,
     CdkStepperModule,
-    MatCardModule,
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
+    MatMomentDateModule,
+    MatFormFieldModule,
+    MatCommonModule,
     MatSidenavModule
 
 

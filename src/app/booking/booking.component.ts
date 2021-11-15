@@ -22,7 +22,7 @@ export class BookingComponent implements OnInit {
   stepTwo= false;
 
   selected: any;
-
+  selectedDate: any;
 
 
   constructor(
@@ -51,6 +51,8 @@ export class BookingComponent implements OnInit {
           }
         }
 */
+
+
       });
 
 
@@ -108,11 +110,16 @@ export class BookingComponent implements OnInit {
     }
 
   }
-
   selectedTime(Time: string) {
   this.selectetTime = Time;
     if(this.selectetTime != null){
       this.stepTwo = true;
   }
+
+
   }
+
+
+
+
 }

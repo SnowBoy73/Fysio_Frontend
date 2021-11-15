@@ -1,6 +1,6 @@
+
 <body>
 <div class="stepper">
-
   <mat-vertical-stepper linear>
     <mat-step  #stepperOne label="vælge behandling" [completed] = stepOne>
       <div class="step">
@@ -24,32 +24,65 @@
     <mat-step label="valg af længte" [completed] = stepTwo>
      <div *ngIf="selectetTreatment === 'massage' ">
        <div class="step">
-         <button class="mat-button" (click)="selectedTime('60')" > førstegang behandling 60 min </button>
+         <button class="mat-button" (click)="selectedTime('60min')" > førstegang behandling 60 min </button>
        </div>
        <div class="step">
          <button class="mat-button" (click)="selectedTime('30')" >opfylnings behandling 30 min</button>
        </div>
        <div class="step">
-         <button class="mat-button"  (click)="selectedTime('60')" > flere område behandling 60 min </button>
+         <button class="mat-button"  (click)="selectedTime('60min')" > flere område behandling 60 min </button>
        </div>
      </div>
       <div *ngIf="selectetTreatment === 'helhedsorienteret' ">
         <div class="step">
-          <button class="mat-button" > behandling 60 min </button>
+          <button class="mat-button" (click)="selectedTime('60min')" > behandling 60 min </button>
         </div>
       </div>
     </mat-step>
 
+
+
     <!-- step 3 booking calender and times -->
-    <mat-step label="vælge dag">
-      <div *ngif="selectetTime === '60'" >
+    <mat-step  label="vælge dag">
+      <div class="container" *ngIf="selectetTime === '60min'" >
+        <div  class="col">
+        <mat-card >
+          <mat-calendar (selectedChange)="selected = $event"></mat-calendar>
+        </mat-card>
+       </div>
+        <div class="col">
+        <mat-card>
+          <button class="mat-button"> 10.00</button>
+          <button class="mat-button"> 10.00</button>
+          <button class="mat-button"> 10.00</button>
+          <button class="mat-button"> 10.00</button>
+          <button class="mat-button"> 10.00</button>
+          <button class="mat-button"> 10.00</button>
+          <button class="mat-button"> 10.00</button>
+          <button class="mat-button"> 10.00</button>
+          <button class="mat-button"> 10.00</button>
+        </mat-card>
+          <p>Selected date: {{selected}}</p>
+        </div>
+
+
 
       </div>
     </mat-step>
+
+
+
+
+
     <mat-step label="udfyld fomelar">
       content 1
     </mat-step>
   </mat-vertical-stepper>
+
+
+
+
+
 </div>
 <button  (click)="postBooking()">postBooking</button>
 <div *ngIf="!socketId"
