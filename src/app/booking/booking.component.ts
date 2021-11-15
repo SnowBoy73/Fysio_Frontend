@@ -14,7 +14,7 @@ import {dateEnquiryDto} from './shared/date-enquiry.dto';
 export class BookingComponent implements OnInit {
   socketId: string | undefined;
   unsubscribe$ = new Subject();
-
+  availableTimesFromDB: string[] = [];
   constructor(
     private bookingService: BookingService
   ) {}
@@ -23,23 +23,26 @@ export class BookingComponent implements OnInit {
     console.log('Booking Component Initialised');
     this.bookingService.connect(); // MUY IMPORTANTÉ!!
 
-    //
+
+//
+    this.bookingService.listenForAvailableTimes()
+      .pipe(
+        takeUntil(this.unsubscribe$)
+      )
+      .subscribe(availableTimes => {
+        console.log('availableTimes received');
+        this.availableTimesFromDB = availableTimes;
+        console.log('this.availableTimesFromDB = ' + this.availableTimesFromDB);
+      });
+
+
+//
     this.bookingService.listenForNewBooking()
       .pipe(
         takeUntil(this.unsubscribe$)
       )
       .subscribe(booking => {
         console.log('booking received');
-  /*      if (-- booking falls on day(s) being viewed --) {
-          console.log( 'New booking = ', booking);
-
-          if (-- get correct date if needed--) {
-            console.log( 'booking added to {that date}');
-// Push booking on bookingsDate array (of bookings)
-        //    this.bookingDate.push(booking);
-          }
-        }
-*/
       });
 
 
@@ -76,8 +79,8 @@ export class BookingComponent implements OnInit {
     const bookingPeriods: BookingDto[] = [];
     // need to create multiple bookings for 1 hour + bookings
     const mockBooking: BookingDto = {
-      date: "2021-11-02",
-      time: "9:00",
+      date: "Thu Nov 18 2021 00:00:00 GMT+0100 (Central European Standard Time",
+      time: "13:30",
       service: "circumcision3",
       email: "real@email.com",
       phone: 12345678,
@@ -86,13 +89,17 @@ export class BookingComponent implements OnInit {
       postcode: 11223344,
       notes: "Do I get a happy ending?",
     }
+    console.log(' MockBooking = ' + mockBooking.date + ' : time = ' + mockBooking.time);
+
     bookingPeriods.push(mockBooking);  // mock
+    console.log(' bookingPeriods length = ' + bookingPeriods.length);
     this.bookingService.postBooking(bookingPeriods);
+
   }
 
   postSelectedDate() {
     let dateEnquiry: dateEnquiryDto = {
-      date: 'Thu Nov 18 2021 00:00:00 GMT+0100 (Central European Standard Time',
+      date: 'Thu Nov 18 2021 11:00:00 GMT+0100 (Central European Standard Time',
       duration: 60
     }
     this.bookingService.postSelectedDate(dateEnquiry);
