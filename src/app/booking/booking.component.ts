@@ -26,7 +26,7 @@ export class BookingComponent implements OnInit {
   selectedDate: any;
   selectedTime: any;
 
-  mockarray = ['9.00', '9.30','10.00','10,30','11.00']
+  mockarray = ['9:00', '9:30','10:00','10:30','11:00']
 
 
 
@@ -104,6 +104,7 @@ export class BookingComponent implements OnInit {
       city: "Cooltown",
       postcode: 11223344,
       notes: "Do I get a happy ending?",
+      duration: 30
     }
     bookingPeriods.push(mockBooking);  // mock
     this.bookingService.postBooking(bookingPeriods);

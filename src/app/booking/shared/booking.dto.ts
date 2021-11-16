@@ -8,4 +8,5 @@ export interface BookingDTO {
   city: string;
   postcode: number;
   notes: string;
+  duration: number;
 }
