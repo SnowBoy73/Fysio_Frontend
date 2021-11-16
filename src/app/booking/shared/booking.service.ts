@@ -3,7 +3,8 @@ import {Socket, SocketIoConfig} from 'ngx-socket-io';
 import {Observable} from 'rxjs';
 import {BookingModel} from './booking.model';
 import {map} from 'rxjs/operators';
-import {BookingDTO} from './booking.dto';
+import {BookingDto} from './booking.dto';
+import {dateEnquiryDto} from './date-enquiry.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,26 @@ export class BookingService {
 
   constructor(private socket: Socket) { }
 
-  postBooking(bookingPeriods: BookingDTO[]): void {
+  postBooking(bookingPeriods: BookingDto[]): void {
     console.log('postBooking ', bookingPeriods[0].email);
     this.socket.emit('postBooking', bookingPeriods);
   }
 
 
+
+  postSelectedDate(selectedDate: dateEnquiryDto) {
+    console.log('date emitted is = ' + selectedDate.date);
+    console.log('booking duration is = ' + selectedDate.duration);
+
+    this.socket.emit('postSelectedDate', selectedDate);
+
+  }
+
+
+  listenForAvailableTimes() {
+    return this.socket
+      .fromEvent<string[]>('availableTimes');
+  }
 
   listenForNewBooking(): Observable<BookingModel> {
     return this.socket
@@ -52,14 +67,15 @@ export class BookingService {
   }
 
 
-  disconnect(): void{
+  disconnect(): void{   // Disconnects the socket to the Backend
     console.log('service Disconnect called');
     this.socket.disconnect();
   }
 
-  connect(): void{
+  connect(): void{  // Connects the socket to the Backend
     console.log('service Connect called');
     this.socket.connect();
   }
+
 
 }

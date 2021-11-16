@@ -22,12 +22,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCommonModule} from '@angular/material/core';
 
 
-
 //import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 
 //const config: SocketIoConfig = { url: 'http://localhost:3004', options: {} };
 const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
-
 
 
 @NgModule({
@@ -55,8 +53,8 @@ const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
     MatMomentDateModule,
     MatFormFieldModule,
     MatCommonModule,
-    MatSidenavModule
-
+    MatSidenavModule,
+    MatDatepickerModule
 
   ],
   providers: [],
