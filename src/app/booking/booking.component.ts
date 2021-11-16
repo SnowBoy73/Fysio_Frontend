@@ -5,9 +5,11 @@ import {BookingDto} from './shared/booking.dto';
 import {Observable, Subject, Subscription} from 'rxjs';
 import {take, takeUntil} from 'rxjs/operators';
 import { MatStepper } from '@angular/material/stepper';
+import {FormGroup} from "@angular/forms";
 
 
 import {dateEnquiryDto} from './shared/date-enquiry.dto';
+import {FormControl, Validators} from "@angular/forms";
 
 
 @Component({
@@ -19,22 +21,30 @@ import {dateEnquiryDto} from './shared/date-enquiry.dto';
 export class BookingComponent implements OnInit {
   socketId: string | undefined;
   unsubscribe$ = new Subject();
-  selectetTreatment: string | undefined;
-  selectetDuration: string | undefined;
+  selectetTreatment = '';
+  selectetDuration = -1;
 
   stepOne = false;
   stepTwo= false;
-  stepThree= false;
+  stepThree= true;
 
   selected: any;
   selectedDate: any;
   selectedTime: any;
 
-  mockarray = ['9:00', '9:30','10:00','10:30','11:00']
+
+
+  Email = new FormControl('');
+  phone = new FormControl('');
+  address = new FormControl('');
+  city = new FormControl('');
+  postcode = new FormControl('');
+  notes = new FormControl('');
 
 
   availableTimesOnDateSelected: string[] = [];
   bookingSlotDuration: number = 30;  // minutes in a booking slot - get from admin table in DB later
+
 
 
   constructor(
@@ -45,6 +55,7 @@ export class BookingComponent implements OnInit {
   ngOnInit(): void {
     console.log('Booking Component Initialised');
     this.bookingService.connect(); // MUY IMPORTANTÉ!!
+    this.selectedTime = '9:30'
 
 
 //
@@ -100,47 +111,23 @@ export class BookingComponent implements OnInit {
 
 
   postBooking() { // date: string, duration: number, ) {
-    const bookingPeriods: BookingDto[] = [];
-
-    // New for 16 Nov 2021
-    const bookingDuration = 60;  // MOCK minutes. Get from selecting treatment
-    const bookingSlotsNeeded: number = bookingDuration / this.bookingSlotDuration;  // Number of booking slots needed for booking
-    console.log(' bookingSlotsNeeded = ' + bookingSlotsNeeded);
-    for (let i = 0; i < bookingSlotsNeeded; i++) {
-      const newBooking: BookingDto = {
-        date: "Thu Nov 18 2021 00:00:00 GMT+0100 (Central European Standard Time", // Get from datepicker
-        time: "13:30",  // Get from time selected in stepper
-        service: "circumcision3",   // Get from stepper
-        email: "real@email.com",  // null to start with. Replaced after info is entered
-        phone: 12345678, // null to start with. Replaced after info is entered
-        address: "11 Blah St", // null to start with. Replaced after info is entered
-        city: "Cooltown", // null to start with. Replaced after info is entered
-        postcode: 11223344, // null to start with. Replaced after info is entered
-        notes: "Do I get a happy ending?", // null to start with. Replaced after info is entered
-        duration: 30
-      }
+    const bookingPeriod: BookingDto= {
+      date: this.selected, //"Thu Nov 18 2021 00:00:00 GMT+0100 (Central European Standard Time", // Get from datepicker
+      time: this.selectedTime,  // Get from time selected in stepper
+      service: this.selectetTreatment,   // Get from stepper
+      email: this.Email.value,  // null to start with. Replaced after info is entered
+      phone: this.phone.value, // null to start with. Replaced after info is entered
+      address: this.address.value, // null to start with. Replaced after info is entered
+      city: this.city.value, // null to start with. Replaced after info is entered
+      postcode: this.postcode.value, // null to start with. Replaced after info is entered
+      notes: this.notes.value, // null to start with. Replaced after info is entered
+      duration: this.selectetDuration
     }
 
-    // need to create multiple bookings for 1 hour + bookings
-  /*  const mockBooking: BookingDto = {
-      date: "Thu Nov 18 2021 00:00:00 GMT+0100 (Central European Standard Time",
-      time: "13:30",
-      service: "bondage",
-      email: "ock@email.com",
-      phone: 99887766,
-      address: "666 Devil Lane",
-      city: "Cooltown",
-      postcode: 11223344,
-      notes: "Do I get a happy ending?",
-      duration: 30
-    }
-    console.log(' MockBooking = ' + mockBooking.date + ' : time = ' + mockBooking.time);
 
-    bookingPeriods.push(mockBooking);  // mock
 
-   */
-    console.log(' bookingPeriods length = ' + bookingPeriods.length);
-    // this.bookingService.postBooking(bookingPeriods);
+   console.log(this.Email.value, this.phone.value,this.address.value,this.city.value,this.postcode.value,this.notes.value);
+     this.bookingService.postBooking(bookingPeriod);
   }
 
 
@@ -151,7 +138,7 @@ export class BookingComponent implements OnInit {
     }
 
   }
-  selectedDuration(Time: string) {
+  selectedDuration(Time: number) {
   this.selectetDuration = Time;
     if(this.selectetDuration != null){
       this.stepTwo = true;
@@ -167,13 +154,16 @@ export class BookingComponent implements OnInit {
     }
   }
 
-  postSelectedDate() {
+
+  postSelectedDate($event: any) {
+    this.selected = $event;
     let dateEnquiry: dateEnquiryDto = {
-      date: 'Thu Nov 18 2021 11:00:00 GMT+0100 (Central European Standard Time)',
-      duration: 60
+      date: $event,
+      duration: this.selectetDuration
     }
     this.bookingService.postSelectedDate(dateEnquiry);
 
   }
+
 
 }

@@ -24,18 +24,18 @@
     <mat-step label="valg af længte" [completed] = stepTwo>
      <div *ngIf="selectetTreatment === 'massage' ">
        <div class="step">
-         <button class="mat-button" (click)="selectedDuration('60min')" > førstegang behandling 60 min </button>
+         <button class="mat-button" (click)="selectedDuration(60)" > førstegang behandling 60 min </button>
        </div>
        <div class="step">
-         <button class="mat-button" (click)="selectedDuration('30')" >opfylnings behandling 30 min</button>
+         <button class="mat-button" (click)="selectedDuration(30)" >opfylnings behandling 30 min</button>
        </div>
        <div class="step">
-         <button class="mat-button"  (click)="selectedDuration('60min')" > flere område behandling 60 min </button>
+         <button class="mat-button"  (click)="selectedDuration(60)" > flere område behandling 60 min </button>
        </div>
      </div>
       <div *ngIf="selectetTreatment === 'helhedsorienteret' ">
         <div class="step">
-          <button class="mat-button" (click)="selectedTime('60min')" > behandling 60 min </button>
+          <button class="mat-button" (click)="selectedTime(60)" > behandling 60 min </button>
         </div>
       </div>
     </mat-step>
@@ -47,11 +47,11 @@
       <div class="container">
         <div  class="col">
         <mat-card >
-          <mat-calendar (selectedChange)="selected = $event"></mat-calendar>
+          <mat-calendar (selectedChange)="postSelectedDate($event)"></mat-calendar>
         </mat-card>
        </div>
-        <div *ngIf="selected != null" class="col">
-        <mat-card *ngFor="let item of mockarray" class="timeSlot"  >
+        <div *ngIf="availableTimesOnDateSelected != null" class="col">
+        <mat-card *ngFor="let item of availableTimesOnDateSelected" class="timeSlot"  >
           <button class="mat-button" (click)="bookTime(item)">{{item}}</button>
         </mat-card>
           <p>Selected date: {{selected}}</p>
@@ -62,17 +62,6 @@
       </div>
     </mat-step>
 
-    date: string;
-    time: string;
-    service: string;
-    email: string;
-    phone: number;
-    address: string;
-    city: string;
-    postcode: number;
-    notes: string;
-
-
 
 
     <mat-step label="udfyld fomelar">
@@ -81,32 +70,34 @@
       <h4>vladt tid: {{selectedTime}} </h4>
       <h4>valdt service: {{selectetTreatment}} </h4>
       </div>
-      <div class="inputForm">
+
+      <div  class="inputForm">
       <mat-form-field appearance="fill">
-        <mat-label>Email Adrasse</mat-label>
-        <input matInput>
+        <mat-label >Email Adrasse</mat-label>
+        <input matInput [formControl]="Email" >
       </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Telefon Nummer</mat-label>
-        <input matInput>
+      <mat-form-field  appearance="fill">
+        <mat-label  >Telefon Nummer</mat-label>
+        <input matInput [formControl]="phone" >
       </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Adrasse</mat-label>
-        <input matInput>
+      <mat-form-field  appearance="fill">
+        <mat-label  >Adrasse</mat-label>
+        <input  matInput  [formControl]="address">
       </mat-form-field>
-      <mat-form-field appearance="fill">
+      <mat-form-field  appearance="fill">
         <mat-label>By</mat-label>
-        <input matInput>
+        <input matInput [formControl]="city">
       </mat-form-field>
-      <mat-form-field appearance="fill">
+      <mat-form-field  appearance="fill">
         <mat-label>PostNummer</mat-label>
-        <input matInput>
+        <input matInput [formControl]="postcode">
       </mat-form-field>
-      <mat-form-field appearance="fill">
+      <mat-form-field  appearance="fill">
         <mat-label>Notater til behandling</mat-label>
-        <input matInput>
+        <input matInput [formControl]="notes">
       </mat-form-field>
       </div>
+      <button  (click)="postBooking()">postBooking</button>
 
     </mat-step>
   </mat-vertical-stepper>
@@ -116,8 +107,7 @@
 
 
 </div>
-<button  (click)="postBooking()">postBooking</button>
-<button  (click)="postSelectedDate()">postSelectedDate</button>
+
 
 
 
