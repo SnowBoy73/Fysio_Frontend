@@ -156,13 +156,13 @@ export class BookingComponent implements OnInit {
 
 
   postSelectedDate($event: any) {
-    this.selected = $event;
+    this.selected = $event;  //  NEEDED???
+    const date_ob = new Date($event).toString();
     let dateEnquiry: dateEnquiryDto = {
-      date: $event,
+      date: date_ob,
       duration: this.selectetDuration
     }
     this.bookingService.postSelectedDate(dateEnquiry);
-
   }
 
 
