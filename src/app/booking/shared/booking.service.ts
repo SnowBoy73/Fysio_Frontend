@@ -34,9 +34,9 @@ export class BookingService {
       .fromEvent<string[]>('availableTimes');
   }
 
-  listenForNewBooking(): Observable<BookingModel> {
+  listenForNewBooking(): Observable<BookingModel[]> {
     return this.socket
-      .fromEvent<BookingModel>('newBooking');
+      .fromEvent<BookingModel[]>('newBooking');
   }
 
 /*

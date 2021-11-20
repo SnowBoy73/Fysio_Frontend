@@ -75,9 +75,21 @@ export class BookingComponent implements OnInit {
       .pipe(
         takeUntil(this.unsubscribe$)
       )
-      .subscribe(booking => {
-        console.log('booking received');
-
+      .subscribe(newBooking => {
+        console.log('newBooking received: = ' + newBooking.toString());
+        for (let i = 0; i < newBooking.length; i++) {
+          console.log('newBooking part : ' + i);
+          console.log('newBooking date: ' + newBooking[i].date);
+          console.log('newBooking time: ' + newBooking[i].time);
+          console.log('newBooking service: ' + newBooking[i].service);
+          console.log('newBooking email: ' + newBooking[i].email);
+          console.log('newBooking phone: ' + newBooking[i].phone);
+          console.log('newBooking address: ' + newBooking[i].address);
+          console.log('newBooking city: ' + newBooking[i].city);
+          console.log('newBooking postcode: ' + newBooking[i].postcode);
+          console.log('newBooking notes: ' + newBooking[i].notes);
+          console.log('newBooking duration: ' + (newBooking.length * this.bookingSlotDuration));
+        }
       });
 
 
