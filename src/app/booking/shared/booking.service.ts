@@ -9,9 +9,12 @@ import {dateEnquiryDto} from './date-enquiry.dto';
 @Injectable({
   providedIn: 'root'
 })
+
 export class BookingService {
 
+
   constructor(private socket: Socket) { }
+
 
   postBooking(bookingPeriod: BookingDto): void {
     console.log('postBooking ', bookingPeriod.email);
@@ -19,13 +22,19 @@ export class BookingService {
   }
 
 
-
   postSelectedDate(selectedDate: dateEnquiryDto) {
     console.log('date emitted is = ' + selectedDate.date);
     console.log('booking duration is = ' + selectedDate.duration);
-
     this.socket.emit('postSelectedDate', selectedDate);
+    //
 
+  }
+
+
+
+  deleteBooking(bookingToDelete: BookingDto) {
+    console.log('deleteBooking on ', bookingToDelete.date + ' at ' + bookingToDelete.time);
+    this.socket.emit('deleteBooking', bookingToDelete);
   }
 
 
@@ -34,9 +43,16 @@ export class BookingService {
       .fromEvent<string[]>('availableTimes');
   }
 
-  listenForNewBooking(): Observable<BookingModel> {
+
+  listenForNewBooking(): Observable<BookingModel[]> {
     return this.socket
-      .fromEvent<BookingModel>('newBooking');
+      .fromEvent<BookingModel[]>('newBooking');
+  }
+
+
+  listenForDeletedBooking(): Observable<BookingModel[]> {
+    return this.socket
+      .fromEvent<BookingModel[]>('deleteBooking');
   }
 
 /*
