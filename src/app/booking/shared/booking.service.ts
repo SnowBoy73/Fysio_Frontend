@@ -26,6 +26,8 @@ export class BookingService {
     console.log('date emitted is = ' + selectedDate.date);
     console.log('booking duration is = ' + selectedDate.duration);
     this.socket.emit('postSelectedDate', selectedDate);
+    //
+
   }
 
 

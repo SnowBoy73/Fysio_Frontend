@@ -193,7 +193,7 @@ export class BookingComponent implements OnInit {
   deleteBooking() {
     const mockDelete: BookingDto = {
       date: "Thu Nov 18 2021 00:00:00 GMT+0100 (Central European Standard Time", // Get from datepicker
-      time: "9:00",  // Get from time selected in stepper
+      time: "10:00",  // Get from time selected in stepper
       service: "Spanking",   // Get from stepper
       email: "a",  // null to start with. Replaced after info is entered
       phone: 1, // null to start with. Replaced after info is entered
@@ -201,7 +201,7 @@ export class BookingComponent implements OnInit {
       city: "this.city.value", // null to start with. Replaced after info is entered
       postcode: 1234, // null to start with. Replaced after info is entered
       notes: "this.notes.value", // null to start with. Replaced after info is entered
-      duration: this.selectetDuration
+      duration: 30,
     }
     this.bookingService.deleteBooking(mockDelete);
   }
