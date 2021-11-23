@@ -2,6 +2,16 @@ html{
   height: 100%;
 }
 
+.mat-toolbar.mat-primary {
+  background: #565A56;
+  color: #fff;
+}
+
+.home{
+  cursor:pointer;
+}
+
+
 body{
   margin: 0;
   font-family: basic-sans, sans-serif;
@@ -9,7 +19,7 @@ body{
   font-size: 1.125em;
   line-height: 1.6;
   color: #333;
-  background: white;
+  background: #E4E9DE;
 
   min-height: 100%;
 
@@ -49,6 +59,7 @@ body{
   text-transform: capitalize;
   font-weight: bold;
   letter-spacing: 0.4px;
+  color: #E4E9DE ;
 }
 
 footer{
@@ -100,7 +111,7 @@ ul{
   position: absolute;
   left:0;
   bottom: -10px;
-  background-color: #e91e63;
+  background-color: #8dc43e;
   height: 2px;
   box-sizing: border-box;
   width: 65px;
@@ -126,12 +137,8 @@ ul{
 
 .icons{
   transform: scale(2.1);
-
-
   height: 12px;
   width: 26px;
-
-
 
 }
 
@@ -165,13 +172,18 @@ ul{
     width: 100%;
   }
 
+
+  }
+
+@media(max-width: 730px){
+
   .nav-links{
     display: none;
   }
   .burger{
     display: block;
   }
-  }
+}
 
 
 

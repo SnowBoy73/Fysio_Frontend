@@ -1,14 +1,15 @@
 <body>
 <header>
 <mat-toolbar color="primary" class="mat-elevation-z4">
-  <span>Fysio</span>
+  <span class = "home" routerLink="home">Fysio</span>
   <div class="spacer"></div>
   <div class="navbar">
-  <a class="nav-links" mat-button routerLink="home">Home</a>
-  <a class="nav-links"mat-button routerLink="about">about</a>
-  <a class="nav-links" mat-button routerLink="bookings">booking</a>
-  <a class="nav-links" mat-button routerLink="contactinfo">contact</a>
-  <a class="nav-links" mat-button routerLink="pricelists">pricelist</a>
+    <a class="nav-links" mat-button routerLink="home">Elite idræt</a>
+    <a class="nav-links" mat-button routerLink="home">Produkter</a>
+     <a class="nav-links"mat-button routerLink="about">Om Klinikken</a>
+     <a class="nav-links" mat-button routerLink="contactinfo">kontactInfo</a>
+    <a class="nav-links" mat-button routerLink="pricelists">prislist</a>
+    <a class="nav-links" style="color: #586058; background-color: #B8DC8A " mat-button routerLink="bookings">booking</a>
   <div class="burger">
     <mat-icon>subject</mat-icon>
   </div>
@@ -16,7 +17,8 @@
 </mat-toolbar>
 
 <div class="banner">
-  <img class="bannerimg" src="assets/fysio%20banner.png">
+  <img class="bannerimg" src="assets/banner-v2.png">
+  <!--<img class="bannerimg" src="assets/fysio%20banner.png">-->
 </div>
 </header>
 
@@ -28,31 +30,32 @@
   <div class="container">
     <div class="row">
       <div class="footer-col">
-        <h4>company</h4>
+        <h4>kontakt Info</h4>
         <ul>
-          <li><a href="#">about us</a></li>
-          <li><a href="#">our services</a></li>
-          <li><a href="#">privacy policy</a></li>
-          <li><a href="#">affiliate program</a></li>
+          <li><a  href="#"> <mat-icon class="contact-icons" >phone</mat-icon> +4560566560 </a></li>
+          <li><a href="#"> <mat-icon class="contact-icons" >email</mat-icon> Fysio@gmail.com</a></li>
+          <li><a href="#"> <mat-icon class="contact-icons" >location_on</mat-icon> terpivej 21, 7058 byen</a></li>
+          <li><a href="#"> <mat-icon class="contact-icons" >house</mat-icon> CVR: 5004458</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>get help</h4>
+        <h4>information</h4>
         <ul>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">returns</a></li>
-          <li><a href="#">order status</a></li>
-          <li><a href="#">payment options</a></li>
+          <li><a href="#">om behandling</a></li>
+          <li><a href="#">priser</a></li>
+          <li><a href="#">produkter</a></li>
+          <li><a href="#">Elite idræt</a></li>
+          <li><a href="#">medarbejder</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Services</h4>
+        <h4>Behandlinger</h4>
         <ul>
-          <li><a href="#">archipuncture</a></li>
-          <li><a href="#">ajustment</a></li>
+          <li><a href="#">fysioterapi</a></li>
+          <li><a href="#">Akupunktur</a></li>
           <li><a href="#">massage</a></li>
-          <li><a href="#">injury rehab</a></li>
+          <li><a href="#">træningsprogram</a></li>
+          <li><a href="#">optimering</a></li>
         </ul>
       </div>
       <div class="footer-col">

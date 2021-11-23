@@ -22,11 +22,11 @@ export class BookingComponent implements OnInit {
   socketId: string | undefined;
   unsubscribe$ = new Subject();
   selectetTreatment = '';
-  selectetDuration = -1;
+  selectetDuration = 1;
 
   stepOne = false;
   stepTwo= false;
-  stepThree= true;
+  stepThree= false;
 
   selected: any;
   selectedDate: any;
