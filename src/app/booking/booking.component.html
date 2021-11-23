@@ -1,50 +1,81 @@
 
 <body>
 <div class="stepper">
-  <mat-vertical-stepper linear>
-    <mat-step  #stepperOne label="vælge behandling" [completed] = stepOne>
+  <mat-vertical-stepper >
+    <mat-step  #stepperOne label="vælge behandling" [completed] = true>
       <div class="step">
       <button class="mat-button" matStepperNext (click)="selectedTreatment('helhedsorienteret')" >Helhedsorienteret fysioterapi</button>
       </div>
       <div class="step">
-        <button class="mat-button"(click)="selectedTreatment('akupunktur')" > Akupunktur </button>
+        <button class="mat-button" matStepperNext (click)="selectedTreatment('akupunktur')" > Akupunktur </button>
       </div>
       <div class="step">
         <button class="mat-button" matStepperNext (click)="selectedTreatment('massage')">Fysioterapeutisk massage</button>
       </div>
       <div class="step">
-        <button class="mat-button" (click)="selectedTreatment('træningsprogram')" >Tilrettelæggelse af træningsprogram</button>
+        <button class="mat-button" matStepperNext (click)="selectedTreatment('træningsprogram')" >Tilrettelæggelse af træningsprogram</button>
       </div>
       <div class="step">
-        <button class="mat-button" (click)="selectedTreatment('optimering')" >Sport og performance optimering</button>
+        <button class="mat-button" matStepperNext (click)="selectedTreatment('optimering')" >Sport og performance optimering</button>
       </div>
     </mat-step>
 
     <!-- step 2 with if statemnts depending on selected treatment -->
     <mat-step label="valg af længte" [completed] = stepTwo>
+
+      <div *ngIf="selectetTreatment === ''" >
+        <h1>vlæge en behandling for at se længte</h1>
+      </div>
+
      <div *ngIf="selectetTreatment === 'massage' ">
        <div class="step">
-         <button class="mat-button" (click)="selectedDuration(60)" > førstegang behandling 60 min </button>
+         <button class="mat-button" matStepperNext (click)="selectedDuration(60)" > førstegang behandling 60 min </button>
        </div>
        <div class="step">
-         <button class="mat-button" (click)="selectedDuration(30)" >opfylnings behandling 30 min</button>
+         <button class="mat-button"  matStepperNext (click)="selectedDuration(30)" >opfylnings behandling 30 min</button>
        </div>
        <div class="step">
-         <button class="mat-button"  (click)="selectedDuration(60)" > flere område behandling 60 min </button>
+         <button class="mat-button" matStepperNext (click)="selectedDuration(60)" > flere område behandling 60 min </button>
        </div>
      </div>
+
+
       <div *ngIf="selectetTreatment === 'helhedsorienteret' ">
         <div class="step">
-          <button class="mat-button" (click)="selectedTime(60)" > behandling 60 min </button>
+          <button class="mat-button" matStepperNext (click)="selectedDuration(60)" > behandling 60 min </button>
+        </div>
+
+      </div>
+
+      <div *ngIf="selectetTreatment === 'akupunktur'">
+        <div class="step">
+          <button class="mat-button" matStepperNext (click)="selectedDuration(60)" > førstegang behandling 60 min </button>
+        </div>
+        <div class="step">
+          <button class="mat-button" matStepperNext (click)="selectedDuration(30)" >opfylnings behandling 30 min</button>
         </div>
       </div>
+
+      <div *ngIf="selectetTreatment === 'træningsprogram'">
+        <div class="step">
+          <button class="mat-button" matStepperNext (click)="selectedDuration(60)" > justerings tid 60 min </button>
+        </div>
+      </div>
+
+      <div *ngIf="selectetTreatment === 'optimering'">
+        <div class="step">
+          <button class="mat-button" matStepperNext (click)="selectedDuration(60)" > optimerings tid 60 min </button>
+        </div>
+      </div>
+
     </mat-step>
 
 
 
     <!-- step 3 booking calender and times -->
     <mat-step  label="vælge dag"  [completed] = stepThree >
-      <div class="container">
+
+      <div *ngIf="selectetDuration != 1; else choseDuration " class="container">
         <div  class="col">
         <mat-card >
           <mat-calendar (selectedChange)="postSelectedDate($event)"></mat-calendar>
@@ -52,24 +83,27 @@
        </div>
         <div *ngIf="availableTimesOnDateSelected != null" class="col">
         <mat-card *ngFor="let item of availableTimesOnDateSelected" class="timeSlot"  >
-          <button class="mat-button" (click)="bookTime(item)">{{item}}</button>
+          <button class="mat-button" matStepperNext (click)="bookTime(item)">{{item}}</button>
         </mat-card>
           <p>Selected date: {{selected}}</p>
         </div>
 
-
-
       </div>
+      <ng-template #choseDuration>
+        <h1>
+          valge en længde af tid før en dag kan vælges
+        </h1>
+      </ng-template>
     </mat-step>
 
 
 
     <mat-step label="udfyld fomelar">
-      <div>
+      <div *ngIf="stepThree === true; else fomelar ">
       <h4>valdt dag: {{selected}}</h4>
       <h4>vladt tid: {{selectedTime}} </h4>
       <h4>valdt service: {{selectetTreatment}} </h4>
-      </div>
+
 
       <div  class="inputForm">
       <mat-form-field appearance="fill">
@@ -98,7 +132,11 @@
       </mat-form-field>
       </div>
       <button  (click)="postBooking()">postBooking</button>
+      </div>
 
+      <ng-template #fomelar>
+        <h1>vælge en dag før du kan udfylde din bookning</h1>
+      </ng-template>
     </mat-step>
   </mat-vertical-stepper>
 
