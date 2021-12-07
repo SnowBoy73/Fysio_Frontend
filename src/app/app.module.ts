@@ -20,7 +20,8 @@ import {MatNativeDateModule} from "@angular/material/core";
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCommonModule} from '@angular/material/core';
-
+import { AngularFireModule } from '@angular/fire';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
 
 //import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 
@@ -40,6 +41,8 @@ const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
     NgxsModule.forRoot([], {
       developmentMode: !environment.production
     }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     //NgxsLoggerPluginModule.forRoot(),*/
     BrowserAnimationsModule,
     MatToolbarModule,
