@@ -18,7 +18,7 @@ export class SharedService {
  async getAllServices(): Promise<any[]> {
    console.log('getAllService called');
 
-     const allServices = await this.http.get<any[]>(environment.backendUrl + '/api/services').toPromise();
+     const allServices = await this.http.get<any[]>(environment.backendUrl + '/services/allServices').toPromise();
      return allServices.map(a => {
 
        console.log(a);
