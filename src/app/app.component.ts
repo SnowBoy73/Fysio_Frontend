@@ -27,6 +27,7 @@ export class AppComponent {
     this.sharedService.getAllServices().then( (data) => {
       console.log(data);
       this.allServices = data;
+      console.log('App Component this.allServices = ' + this.allServices);
     });
 
  }
