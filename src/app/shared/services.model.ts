@@ -1,4 +1,4 @@
-export interface ServicesDto {
+export interface ServicesModel {
   id: string;
   name: string;
   duration: string;

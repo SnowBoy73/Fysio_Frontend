@@ -22,6 +22,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCommonModule} from '@angular/material/core';
 import { AngularFireModule } from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {HttpClientModule} from '@angular/common/http';
 
 //import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 
@@ -36,6 +37,7 @@ const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     MatCardModule,
     SocketIoModule.forRoot(config),
     NgxsModule.forRoot([], {

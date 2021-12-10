@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {takeUntil} from 'rxjs/operators';
 import {BookingService} from './booking/shared/booking.service';
 import {SharedService} from './shared/shared.service';
-import { ServicesDto } from './shared/services.dto';
+import { ServicesModel } from './shared/services.model';
 import {Subject} from 'rxjs';
 
 @Component({
@@ -16,7 +16,7 @@ export class AppComponent {
 
   socketId: string | undefined;
   unsubscribe$ = new Subject();
-  allServices: any[] = [];  // ServicesDto
+  allServices: any[] = [];  // ServicesModel
 
   constructor(private sharedService: SharedService) {
   }
@@ -24,8 +24,16 @@ export class AppComponent {
 
   ngOnInit(): void {
     console.log('App Component Initialised');
-    this.sharedService.connect(); // MUY IMPORTANTÉ!!  // PROBLEM with 2 connections???
+    this.sharedService.getAllServices().then( (data) => {
+      console.log(data);
+      this.allServices = data;
+    });
 
+ }
+
+
+    /*this.sharedService.connect(); // MUY IMPORTANTÉ!!  // PROBLEM with 2 connections???
+    this.sharedService.getAllService()
     this.sharedService.listenForAllServices()
       .pipe(
         takeUntil(this.unsubscribe$)
@@ -34,7 +42,7 @@ export class AppComponent {
         console.log('services received');
         this.allServices = services;
         console.log('this.allServices = ' + this.allServices);
-      });
-  }
+      });*/
+
 
 }

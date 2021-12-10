@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Socket, SocketIoConfig} from 'ngx-socket-io';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {ServicesDto} from './services.dto';
+import {ServicesModel} from './services.model';
+import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,21 +12,40 @@ import {ServicesDto} from './services.dto';
 export class SharedService {
 
 
-  constructor(private socket: Socket) { }
+  constructor(private http: HttpClient) { } // private socket: Socket
 
 
- getAllService(allServices: ServicesDto[]): void {
-    this.socket.emit('getAllServices');
-  }
+ async getAllServices(): Promise<any[]> {
+   console.log('getAllService called');
+
+     const allServices = await this.http.get<any[]>(environment.backendUrl + '/api/services').toPromise();
+     return allServices.map(a => {
+
+       console.log(a);
+
+       const id = a.id;
+       const name = a.name;
+       const duration = a.duration;
+       const hourlyRate = a.hourlyRate;
+       const info1 = a.info1;
+       const info2 = a.info2;
+       const info3 = a.info3;
+       return {id, name, duration, hourlyRate, info1, info2, info3 } as ServicesModel;
+     });
+   }
+   //this.socket.emit('getAllServices');
+
+}
 
 
 
-
+/*
   listenForAllServices() {
+    console.log('listenForAllServices called');
     return this.socket
       .fromEvent<string[]>('allServices');
   }
-
+*/
 
 
   /*
@@ -34,7 +54,7 @@ export class SharedService {
         .fromEvent<string>('error');
     }
    */
-
+/*
   listenForConnect(): Observable<string> {
     return this.socket
       .fromEvent<string>('connect')
@@ -57,14 +77,14 @@ export class SharedService {
 
 
   disconnect(): void{   // Disconnects the socket to the Backend
-    console.log('service Disconnect called');
+    console.log('shared service Disconnect called');
     this.socket.disconnect();
   }
 
   connect(): void{  // Connects the socket to the Backend
-    console.log('service Connect called');
+    console.log('shared service Connect called');
     this.socket.connect();
   }
 
+*/
 
-}
