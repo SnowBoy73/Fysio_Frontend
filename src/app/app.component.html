@@ -9,6 +9,13 @@
      <a class="nav-links"mat-button routerLink="about">Om Klinikken</a>
      <a class="nav-links" mat-button routerLink="contactinfo">kontactInfo</a>
     <a class="nav-links" mat-button routerLink="pricelists">prislist</a>
+
+    <button class="nav-links" mat-button routerLink="behandlinger" [matMenuTriggerFor]="menu">behandliger</button>
+    <mat-menu #menu="matMenu"  >
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu>
+
     <a class="nav-links" style="color: #586058; background-color: #B8DC8A " mat-button routerLink="bookings">booking</a>
   <div class="burger">
     <mat-icon>subject</mat-icon>

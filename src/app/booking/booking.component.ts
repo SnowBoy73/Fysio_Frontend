@@ -23,6 +23,7 @@ export class BookingComponent implements OnInit {
   unsubscribe$ = new Subject();
   selectetTreatment = '';
   selectetDuration = 1;
+  selectedTime = '';
 
   stepOne = false;
   stepTwo= false;
@@ -30,7 +31,7 @@ export class BookingComponent implements OnInit {
 
   selected: any;
   selectedDate: any;
-  selectedTime: any;
+  //selectedTime: any;
 
 
 
@@ -40,7 +41,6 @@ export class BookingComponent implements OnInit {
   city = new FormControl('');
   postcode = new FormControl('');
   notes = new FormControl('');
-
 
   availableTimesOnDateSelected: string[] = [];
   bookingSlotDuration: number = 30;  // minutes in a booking slot - get from admin table in DB later
@@ -52,7 +52,7 @@ export class BookingComponent implements OnInit {
   ngOnInit(): void {
     console.log('Booking Component Initialised');
     this.bookingService.connect(); // MUY IMPORTANTÉ!!
-    this.selectedTime = '9:30'
+
 
 
     this.bookingService.listenForAvailableTimes()
@@ -152,6 +152,7 @@ export class BookingComponent implements OnInit {
     }
    console.log(this.Email.value, this.phone.value,this.address.value,this.city.value,this.postcode.value,this.notes.value);
      this.bookingService.postBooking(bookingPeriod);
+     return bookingPeriod
   }
 
 
@@ -160,7 +161,7 @@ export class BookingComponent implements OnInit {
     if(this.selectetTreatment != null){
       this.stepOne = true;
     }
-
+    return String;
   }
 
 
@@ -169,14 +170,16 @@ export class BookingComponent implements OnInit {
     if(this.selectetDuration != null) {
       this.stepTwo = true;
     }
+    return Time;
   }
 
 
-  bookTime(item: any) {
+  bookTime(item: string) {
     if (this.selected != null) {
       this.selectedTime = item;
       this.stepThree = true;
     }
+    return item;
   }
 
 
@@ -187,6 +190,7 @@ export class BookingComponent implements OnInit {
       duration: this.selectetDuration
     }
     this.bookingService.postSelectedDate(dateEnquiry);
+    return $event;
   }
 
 

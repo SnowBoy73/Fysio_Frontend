@@ -20,6 +20,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCommonModule} from '@angular/material/core';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 //import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
@@ -54,7 +55,9 @@ const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
     MatFormFieldModule,
     MatCommonModule,
     MatSidenavModule,
+    MatMenuModule,
     MatDatepickerModule
+
 
   ],
   providers: [],
