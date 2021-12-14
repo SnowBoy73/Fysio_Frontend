@@ -4,6 +4,7 @@ import {BookingService} from './booking/shared/booking.service';
 import {SharedService} from './shared/shared.service';
 import { ServicesModel } from './shared/services.model';
 import {Subject} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +15,19 @@ import {Subject} from 'rxjs';
 export class AppComponent {
   title = 'Fysio-Frontend';
 
-  socketId: string | undefined;
-  unsubscribe$ = new Subject();
-  allServices: any[] = [];  // ServicesModel
 
-  constructor(private sharedService: SharedService) {
+
+  allServices: ServicesModel[] = [];  // ServicesModel
+  selectedService: any
+
+
+
+  constructor(private sharedService: SharedService, private router: Router) {
+   this.allServices = [
+     {id: '1', name: 'Helbredsorienteret fysiotarpi', duration: '30', hourlyRate: 500, info1: 'info1', info2: 'info2', info3: 'info3'},
+     {id: '1', name: 'Akupunktur', duration: '30', hourlyRate: 500, info1: 'info1', info2: 'info2', info3: 'info3'},
+     {id: '1', name: 'Fysioterpeutisk massage', duration: '30', hourlyRate: 500, info1: 'info1', info2: 'info2', info3: 'info3'}
+   ]
   }
 
 
@@ -33,17 +42,21 @@ export class AppComponent {
  }
 
 
-    /*this.sharedService.connect(); // MUY IMPORTANTÉ!!  // PROBLEM with 2 connections???
-    this.sharedService.getAllService()
-    this.sharedService.listenForAllServices()
-      .pipe(
-        takeUntil(this.unsubscribe$)
-      )
-      .subscribe(services => {
-        console.log('services received');
-        this.allServices = services;
-        console.log('this.allServices = ' + this.allServices);
-      });*/
+
+  selectedTreatment(treatment: string) {
+
+    for (let i = 0; i < this.allServices.length; i++) {
+      if(this.allServices[i].name == treatment){
+        this.selectedService = this.allServices[i];
+        console.log(this.allServices[i])
+      }
+    }
+
+
+    this.router.navigate(['/home']).then(() => {this.router.navigate(['/behandlinger'], {state: {data: this.selectedService}})});
+
+
+  }
 
 
 }

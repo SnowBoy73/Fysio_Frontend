@@ -27,6 +27,8 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {HttpClientModule} from '@angular/common/http';
 
 
+
+
 //import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 
 //const config: SocketIoConfig = { url: 'http://localhost:3004', options: {} };
@@ -63,7 +65,9 @@ const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
     MatCommonModule,
     MatSidenavModule,
     MatMenuModule,
+
     MatDatepickerModule
+
 
 
   ],

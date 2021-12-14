@@ -25,6 +25,7 @@ export class BookingComponent implements OnInit {
   selectetDuration = 1;
   selectedTime = '';
 
+
   stepOne = false;
   stepTwo= false;
   stepThree= false;
