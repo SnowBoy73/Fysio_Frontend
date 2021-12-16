@@ -41,7 +41,7 @@ const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
     HttpClientModule,
     MatCardModule,
     SocketIoModule.forRoot(config),
-    NgxsModule.forRoot([BookingState], {  // need BookingState??
+    NgxsModule.forRoot([], {  // need BookingState??
       developmentMode: !environment.production
     }),
     //NgxsReduxDevtoolsPluginModule.forRoot(),

@@ -9,7 +9,7 @@ import {FormGroup} from "@angular/forms";
 import {dateEnquiryDto} from './shared/date-enquiry.dto';
 import {FormControl, Validators} from "@angular/forms";
 import {Select, Store} from '@ngxs/store';
-import {ListenForAvailableTimes} from './state/booking.actions';
+import {ListenForAvailableTimes, StopListeningForAvailableTimes} from './state/booking.actions';
 import {BookingState} from './state/booking.state';
 
 
@@ -33,8 +33,6 @@ export class BookingComponent implements OnInit {
   selectedDate: any;
   selectedTime: any;
 
-
-
   Email = new FormControl('');
   phone = new FormControl('');
   address = new FormControl('');
@@ -42,15 +40,9 @@ export class BookingComponent implements OnInit {
   postcode = new FormControl('');
   notes = new FormControl('');
 
-  //availableTimesOnDateSelected: string[] = [];
   bookingSlotDuration: number = 30;  // minutes in a booking slot - get from admin table in DB later
 
-   @Select(BookingState.availableTimesOnDateSelected) availableTimesOnDateSelected$: Observable<string[]> | undefined;
-
-   //availableTimes: string[] | undefined;
-
-  //private availableTimesOnDateSelectedSubscription: Subscription;
-
+  @Select(BookingState.availableTimesOnDateSelected) availableTimesOnDateSelected$: Observable<string[]> | undefined;
 
   constructor(
     private store: Store,
@@ -62,23 +54,7 @@ export class BookingComponent implements OnInit {
     console.log('Booking Component Initialised');
     this.bookingService.connect(); // MUY IMPORTANTÉ!!
     this.selectedTime = '9:30'
-
-
-
-// WORK HERE
-  this.store.dispatch(new ListenForAvailableTimes());
-  /*  this.bookingService.listenForAvailableTimes()
-      .pipe(
-        takeUntil(this.unsubscribe$)
-      )
-      .subscribe(availableTimes => {
-        console.log('availableTimes received');
-
-        this.availableTimesOnDateSelected = availableTimes;
-        console.log('this.availableTimesFromDB = ' + this.availableTimesOnDateSelected);
-      });
-*/
-
+    this.store.dispatch(new ListenForAvailableTimes());
     this.bookingService.listenForNewBooking()
       .pipe(
         takeUntil(this.unsubscribe$)
@@ -146,7 +122,7 @@ export class BookingComponent implements OnInit {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
     this.bookingService.disconnect();  // Removed to stay connected between routes
-    //this.store.dispatch(new StopListeningForClients());
+    this.store.dispatch(new StopListeningForAvailableTimes());
   }
 
 

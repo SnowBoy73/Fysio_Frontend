@@ -12,7 +12,6 @@ import {dateEnquiryDto} from './date-enquiry.dto';
 
 export class BookingService {
 
-
   constructor(private socket: Socket) { }
 
 
@@ -26,10 +25,7 @@ export class BookingService {
     console.log('date emitted is = ' + selectedDate.date);
     console.log('booking duration is = ' + selectedDate.duration);
     this.socket.emit('postSelectedDate', selectedDate);
-    //
-
   }
-
 
 
   deleteBooking(bookingToDelete: BookingDto) {
@@ -55,12 +51,6 @@ export class BookingService {
       .fromEvent<BookingModel[]>('deleteBooking');
   }
 
-/*
-  listenForErrors(): Observable<string> {
-    return this.socket
-      .fromEvent<string>('error');
-  }
- */
 
   listenForConnect(): Observable<string> {
     return this.socket
@@ -71,6 +61,7 @@ export class BookingService {
         })
       );
   }
+
 
   listenForDisconnect(): Observable<string> {
     return this.socket
@@ -87,6 +78,7 @@ export class BookingService {
     console.log('service Disconnect called');
     this.socket.disconnect();
   }
+
 
   connect(): void{  // Connects the socket to the Backend
     console.log('service Connect called');
