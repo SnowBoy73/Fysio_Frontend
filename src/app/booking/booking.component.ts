@@ -6,10 +6,11 @@ import {Observable, Subject, Subscription} from 'rxjs';
 import {take, takeUntil} from 'rxjs/operators';
 import { MatStepper } from '@angular/material/stepper';
 import {FormGroup} from "@angular/forms";
-
-
 import {dateEnquiryDto} from './shared/date-enquiry.dto';
 import {FormControl, Validators} from "@angular/forms";
+import {Select, Store} from '@ngxs/store';
+import {ListenForAvailableTimes} from './state/booking.actions';
+import {BookingState} from './state/booking.state';
 
 
 @Component({
@@ -41,12 +42,20 @@ export class BookingComponent implements OnInit {
   postcode = new FormControl('');
   notes = new FormControl('');
 
-
-  availableTimesOnDateSelected: string[] = [];
+  //availableTimesOnDateSelected: string[] = [];
   bookingSlotDuration: number = 30;  // minutes in a booking slot - get from admin table in DB later
 
+   @Select(BookingState.availableTimesOnDateSelected) availableTimesOnDateSelected$: Observable<string[]> | undefined;
 
-  constructor(private bookingService: BookingService) {}
+   //availableTimes: string[] | undefined;
+
+  //private availableTimesOnDateSelectedSubscription: Subscription;
+
+
+  constructor(
+    private store: Store,
+    private bookingService: BookingService,
+    ) {}
 
 
   ngOnInit(): void {
@@ -55,16 +64,20 @@ export class BookingComponent implements OnInit {
     this.selectedTime = '9:30'
 
 
-    this.bookingService.listenForAvailableTimes()
+
+// WORK HERE
+  this.store.dispatch(new ListenForAvailableTimes());
+  /*  this.bookingService.listenForAvailableTimes()
       .pipe(
         takeUntil(this.unsubscribe$)
       )
       .subscribe(availableTimes => {
         console.log('availableTimes received');
+
         this.availableTimesOnDateSelected = availableTimes;
         console.log('this.availableTimesFromDB = ' + this.availableTimesOnDateSelected);
       });
-
+*/
 
     this.bookingService.listenForNewBooking()
       .pipe(
@@ -138,7 +151,7 @@ export class BookingComponent implements OnInit {
 
 
   postBooking() {
-    const bookingPeriod: BookingDto= {
+    const bookingPeriod: BookingDto = {
       date: this.selected, //"Thu Nov 18 2021 00:00:00 GMT+0100 (Central European Standard Time", // Get from datepicker
       time: this.selectedTime,  // Get from time selected in stepper
       service: this.selectetTreatment,   // Get from stepper
@@ -186,6 +199,7 @@ export class BookingComponent implements OnInit {
       date: this.selected,
       duration: this.selectetDuration
     }
+    //this.store.dispatch(new UpdateAvailableTimes(dateEnquiry))  // new
     this.bookingService.postSelectedDate(dateEnquiry);
   }
 

@@ -1,18 +1,19 @@
-import { Injectable } from '@angular/core';
 import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {
-  ListenForAvailableTimes, UpdateAvailableTimes,
-} from './booking.actions';
-import {Subscription} from 'rxjs';
+import {ListenForAvailableTimes, UpdateAvailableTimes} from './booking.actions';
 import {BookingService} from '../shared/booking.service';
-import {BookingModel} from '../shared/booking.model';
+import {state} from '@angular/animations';
+import {tap} from 'rxjs/operators';
+// import {Subscription} from 'rxjs';
+import { Injectable } from '@angular/core';
+import {Subject, Subscription} from 'rxjs';
+import {FormControl} from '@angular/forms';
 
 export interface BookingStateModel {
   availableTimesOnDateSelected: string[];
 }
 
 @State<BookingStateModel>({
-  name: 'booking',
+  name: 'Booking',
   defaults: {
     availableTimesOnDateSelected: [],
   }
@@ -20,74 +21,56 @@ export interface BookingStateModel {
 
 @Injectable()
 export class BookingState {
-  private clientsUnsub: Subscription | undefined;
   constructor(private bookingService: BookingService) {}
 
   @Selector()
-  static availableTimes(state: BookingStateModel): string[] {
+  static availableTimesOnDateSelected(state: BookingStateModel): string[] {
     return state.availableTimesOnDateSelected;
   }
 
   @Action(ListenForAvailableTimes)
-  getAvailableTimes(ctx: StateContext<BookingStateModel>): void {
+  getAvailableTimesOnDateSelected(ctx: StateContext<BookingStateModel>, at: ListenForAvailableTimes): void {
     this.bookingService.listenForAvailableTimes()
       .subscribe(availableTimes => {
+        console.log('@Action(ListenForAvailableTimes) length' + availableTimes.length)
         ctx.dispatch(new UpdateAvailableTimes(availableTimes));
       });
   }
 
-/*
-  @Action(ListenForClients)
-  getClients(ctx: StateContext<CommentStateModel>): void {
-    this.clientsUnsub = this.commentService.listenForClients()
-      .subscribe(clients => {
-        ctx.dispatch(new UpdateClients(clients));
-      });
-  }
+  @Action(UpdateAvailableTimes)
+  updateAvailableTimesOnDateSelected(ctx: StateContext<BookingStateModel>, uat: UpdateAvailableTimes): void {
 
-  @Action(StopListeningForClients)
-  stopListeningForClients(ctx: StateContext<CommentStateModel>): void {
-    if (this.clientsUnsub) {
-      this.clientsUnsub.unsubscribe();
-    }
-  }
-
-  @Action(UpdateClients)
-  updateClients(ctx: StateContext<CommentStateModel>, uc: UpdateClients): void {
-    this.commentService.listenForClients()
-      .subscribe(clients => {
         const state = ctx.getState();
-        const newState: CommentStateModel = {
+        console.log('fsdsggsth' + uat.availableTimes.length)
+
+        const newState: BookingStateModel = {
           ...state,
-          clients: uc.clients
+          availableTimesOnDateSelected: uat.availableTimes
         };
         ctx.setState(newState);
-      });
+
+        console.log('@Action(ListenForAvailableTimes2) length' + state.availableTimesOnDateSelected.length)
+
   }
 
-  @Action(ListenForHighscoreComments)
-  getHighcoreComments(ctx: StateContext<CommentStateModel>): void {
-    this.commentService.listenForHighscoreComments()
-      .subscribe(comments => {
-        ctx.dispatch(new UpdateHighscoreComments(comments));
-      });
-  }
 
-  @Action(UpdateHighscoreComments)
-  updateHighcoreComments(ctx: StateContext<CommentStateModel>, uhc: UpdateHighscoreComments): void {
-    this.commentService.listenForHighscoreComments()
-      .subscribe(comments => {
-        const state = ctx.getState();
-        const newState: CommentStateModel = {
-          ...state,
-          comments: uhc.comments
-        };
-        ctx.setState(newState);
-      });
-  }
-*/
 }
 
+    /*
+
+      @Selector()
+      static availableTimes(state: BookingStateModel): string[] {
+        return state.availableTimes;
+      }
+
+    /*
+      @Action(ListenForNewBooking)
+      getNewBooking(ctx: StateContext<BookingStateModel>): void {
+        this.bookingService.listenForNewBooking()
+          .subscribe(booking => {
+            //ctx.dispatch(new (booking));
+          });
+          */
 
 
 
@@ -98,4 +81,27 @@ export class BookingState {
 
 
 
+  /*{/*getState, patchState, dispatch}: StateContext<AvailableTimesStateModel>) {
+  patchState({availableTimesOnDateSelected: //[...state.availableTimes, payload]
+    /*   return this.bookingService.listenForAvailableTimes().pipe(
+         tap()
+       )
+     }
+   //   { payload}: UpdateAvailableTimes) { // ???
+       //const state = getState();
+   /*
+       dispatch()
+       patchState({
+         availableTimesOnDateSelected: [...state.availableTimes, payload]
+       })
+     }
+   */
+
+
+
+
+  /*@Selector()
+    static getAvailableTimes(state: AvailableTimesStateModel) {
+      return state.availableTimes;
+    }*/
 
