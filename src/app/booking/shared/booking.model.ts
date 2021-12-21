@@ -1,4 +1,5 @@
 export interface BookingModel {
+  id: string;
   date: string;
   time: string;
   service: string;
