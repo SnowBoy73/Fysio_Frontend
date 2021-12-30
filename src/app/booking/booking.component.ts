@@ -6,10 +6,11 @@ import {Observable, Subject, Subscription} from 'rxjs';
 import {take, takeUntil} from 'rxjs/operators';
 import { MatStepper } from '@angular/material/stepper';
 import {FormGroup} from "@angular/forms";
-
-
 import {dateEnquiryDto} from './shared/date-enquiry.dto';
 import {FormControl, Validators} from "@angular/forms";
+import {Select, Store} from '@ngxs/store';
+import {ListenForAvailableTimes, StopListeningForAvailableTimes} from './state/booking.actions';
+import {BookingState} from './state/booking.state';
 
 
 @Component({
@@ -34,8 +35,6 @@ export class BookingComponent implements OnInit {
   selectedDate: any;
   //selectedTime: any;
 
-
-
   Email = new FormControl('');
   phone = new FormControl('');
   address = new FormControl('');
@@ -43,29 +42,24 @@ export class BookingComponent implements OnInit {
   postcode = new FormControl('');
   notes = new FormControl('');
 
-  availableTimesOnDateSelected: string[] = [];
+
+
   bookingSlotDuration: number = 30;  // minutes in a booking slot - get from admin table in DB later
 
+  @Select(BookingState.availableTimesOnDateSelected) availableTimesOnDateSelected$: Observable<string[]> | undefined;
 
-  constructor(private bookingService: BookingService) {}
+  constructor(
+    private store: Store,
+    private bookingService: BookingService,
+    ) {}
 
 
   ngOnInit(): void {
     console.log('Booking Component Initialised');
     this.bookingService.connect(); // MUY IMPORTANTÉ!!
 
-
-
-    this.bookingService.listenForAvailableTimes()
-      .pipe(
-        takeUntil(this.unsubscribe$)
-      )
-      .subscribe(availableTimes => {
-        console.log('availableTimes received');
-        this.availableTimesOnDateSelected = availableTimes;
-        console.log('this.availableTimesFromDB = ' + this.availableTimesOnDateSelected);
-      });
-
+    this.selectedTime = '9:30'
+    this.store.dispatch(new ListenForAvailableTimes());
 
     this.bookingService.listenForNewBooking()
       .pipe(
@@ -134,12 +128,13 @@ export class BookingComponent implements OnInit {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
     this.bookingService.disconnect();  // Removed to stay connected between routes
-    //this.store.dispatch(new StopListeningForClients());
+    this.store.dispatch(new StopListeningForAvailableTimes());
   }
 
 
   postBooking() {
-    const bookingPeriod: BookingDto= {
+    const bookingPeriod: BookingDto = {
+      id: '',
       date: this.selected, //"Thu Nov 18 2021 00:00:00 GMT+0100 (Central European Standard Time", // Get from datepicker
       time: this.selectedTime,  // Get from time selected in stepper
       service: this.selectetTreatment,   // Get from stepper
@@ -190,6 +185,7 @@ export class BookingComponent implements OnInit {
       date: this.selected,
       duration: this.selectetDuration
     }
+    //this.store.dispatch(new UpdateAvailableTimes(dateEnquiry))  // new
     this.bookingService.postSelectedDate(dateEnquiry);
     return $event;
   }
@@ -197,16 +193,17 @@ export class BookingComponent implements OnInit {
 
   deleteBooking() {
     const mockDelete: BookingDto = {
-      date: "Thu Nov 18 2021 00:00:00 GMT+0100 (Central European Standard Time", // Get from datepicker
-      time: "10:00",  // Get from time selected in stepper
-      service: "Spanking",   // Get from stepper
-      email: "a",  // null to start with. Replaced after info is entered
-      phone: 1, // null to start with. Replaced after info is entered
-      address: "this.address.value", // null to start with. Replaced after info is entered
-      city: "this.city.value", // null to start with. Replaced after info is entered
-      postcode: 1234, // null to start with. Replaced after info is entered
-      notes: "this.notes.value", // null to start with. Replaced after info is entered
-      duration: 30,
+      id: 'f2426a84-8312-4a04-b7d6-a1f2b8606496',
+      date: '',
+      time: '',
+      service: '',
+      email: "a", // info entered
+      phone: 1, // info entered
+      address: '',
+      city: '',
+      postcode: 0,
+      notes: '',
+      duration: 0,
     }
     this.bookingService.deleteBooking(mockDelete);
   }

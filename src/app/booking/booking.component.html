@@ -81,7 +81,7 @@
           <mat-calendar (selectedChange)="postSelectedDate($event)"></mat-calendar>
         </mat-card>
        </div>
-        <div *ngIf="availableTimesOnDateSelected != null" class="col">
+        <div *ngIf="availableTimesOnDateSelected$ | async as availableTimesOnDateSelected" class="col">
         <mat-card *ngFor="let item of availableTimesOnDateSelected" class="timeSlot"  >
           <button class="mat-button" matStepperNext (click)="bookTime(item)">{{item}}</button>
         </mat-card>
@@ -131,7 +131,7 @@
         <input matInput [formControl]="notes">
       </mat-form-field>
       </div>
-      <button  (click)="postBooking()">postBooking</button>
+      <button (click)="postBooking()">postBooking</button>
       </div>
 
       <ng-template #fomelar>
@@ -151,7 +151,7 @@
 <button (click)="deleteBooking()">deleteBooking</button>
 
 
-
+<!--
 <div *ngIf="!socketId"
      class="warn-text-colour"
      style="font-family: cursive"
