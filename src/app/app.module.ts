@@ -27,8 +27,10 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {HttpClientModule} from '@angular/common/http';
 
 import {BookingState} from './booking/state/booking.state';
+import { DialogComponent } from './dialog/dialog.component';
 //import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
-import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
+//import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
+
 
 
 //const config: SocketIoConfig = { url: 'http://localhost:3004', options: {} };
@@ -38,7 +40,9 @@ const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
 @NgModule({
   declarations: [
     AppComponent,
+    DialogComponent,
   ],
+  entryComponents:[DialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -49,7 +53,7 @@ const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
       developmentMode: !environment.production
     }),
     //NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsLoggerPluginModule.forRoot(),
+    //NgxsLoggerPluginModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     BrowserAnimationsModule,

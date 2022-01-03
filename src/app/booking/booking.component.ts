@@ -11,6 +11,8 @@ import {FormControl, Validators} from "@angular/forms";
 import {Select, Store} from '@ngxs/store';
 import {ListenForAvailableTimes, StopListeningForAvailableTimes} from './state/booking.actions';
 import {BookingState} from './state/booking.state';
+import {MatDialog} from "@angular/material/dialog";
+import {DialogComponent} from "../dialog/dialog.component";
 
 
 @Component({
@@ -42,6 +44,10 @@ export class BookingComponent implements OnInit {
   postcode = new FormControl('');
   notes = new FormControl('');
 
+  // mock
+  // availableTimesOnDateSelected  <--- use real data in html
+  mocktimes = ['9','9.30','10','10,30','11','11.30']
+
 
 
   bookingSlotDuration: number = 30;  // minutes in a booking slot - get from admin table in DB later
@@ -51,6 +57,7 @@ export class BookingComponent implements OnInit {
   constructor(
     private store: Store,
     private bookingService: BookingService,
+    private dialog: MatDialog
     ) {}
 
 
@@ -146,6 +153,7 @@ export class BookingComponent implements OnInit {
       notes: this.notes.value, // null to start with. Replaced after info is entered
       duration: this.selectetDuration
     }
+    this.dialog.open(DialogComponent);
    console.log(this.Email.value, this.phone.value,this.address.value,this.city.value,this.postcode.value,this.notes.value);
      this.bookingService.postBooking(bookingPeriod);
      return bookingPeriod
