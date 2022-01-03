@@ -44,6 +44,10 @@ export class BookingComponent implements OnInit {
   postcode = new FormControl('');
   notes = new FormControl('');
 
+  //delete form
+  deleteID = new FormControl('');
+  deletePhone = new FormControl('');
+  deleteEmail = new FormControl('');
   // mock
   // availableTimesOnDateSelected  <--- use real data in html
   mocktimes = ['9','9.30','10','10,30','11','11.30']
@@ -200,13 +204,18 @@ export class BookingComponent implements OnInit {
 
 
   deleteBooking() {
+    var delID = this.deleteID.toString();
+    var delEmail = this.deleteEmail.toString();
+    var myNumber : number = + this.deletePhone
+
     const mockDelete: BookingDto = {
-      id: 'f2426a84-8312-4a04-b7d6-a1f2b8606496',
+
+      id: delID,
       date: '',
       time: '',
       service: '',
-      email: "a", // info entered
-      phone: 1, // info entered
+      email: delEmail, // info entered
+      phone: myNumber, // info entered
       address: '',
       city: '',
       postcode: 0,

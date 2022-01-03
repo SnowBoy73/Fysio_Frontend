@@ -8,28 +8,28 @@
     <a class="nav-links" mat-button routerLink="home">Elite idræt</a>
     <a class="nav-links" mat-button routerLink="home">Produkter</a>
      <a class="nav-links"mat-button routerLink="about">Om Klinikken</a>
-     <a class="nav-links" mat-button routerLink="contactinfo">kontactInfo</a>
-    <a class="nav-links" mat-button routerLink="pricelists">prislist</a>
+    <!--  <a class="nav-links" mat-button routerLink="contactinfo">kontactInfo</a> -->
+     <a class="nav-links" mat-button routerLink="pricelists">prislist</a>
 
-    <button class="nav-links" mat-button  [matMenuTriggerFor]="menu">behandliger</button>
-    <mat-menu #menu="matMenu">
-      <button  (click)="selectedTreatment('Helbredsorienteret fysiotarpi')" mat-menu-item>Helbredsorienteret fysiotarpi</button>
-      <button (click)="selectedTreatment('Akupunktur')" mat-menu-item>Akupunktur</button>
-      <button (click)="selectedTreatment('Fysioterpeutisk massage')" mat-menu-item>Fysioterpeutisk massage</button>
-      <button (click)="selectedTreatment('Tilrettelæggelse af træningsprogram')" mat-menu-item>Tilrettelæggelse af træningsprogram</button>
-      <button (click)="selectedTreatment('Sport og performance optimering')" mat-menu-item>Sport og performance optimering</button>
-    </mat-menu>
+     <button class="nav-links" mat-button  [matMenuTriggerFor]="menu">behandliger</button>
+     <mat-menu #menu="matMenu">
+       <button  (click)="selectedTreatment('Helbredsorienteret fysiotarpi')" mat-menu-item>Helbredsorienteret fysiotarpi</button>
+       <button (click)="selectedTreatment('Akupunktur')" mat-menu-item>Akupunktur</button>
+       <button (click)="selectedTreatment('Fysioterpeutisk massage')" mat-menu-item>Fysioterpeutisk massage</button>
+       <button (click)="selectedTreatment('Tilrettelæggelse af træningsprogram')" mat-menu-item>Tilrettelæggelse af træningsprogram</button>
+       <button (click)="selectedTreatment('Sport og performance optimering')" mat-menu-item>Sport og performance optimering</button>
+     </mat-menu>
 
-    <a class="nav-links" style="color: #586058; background-color: #B8DC8A " mat-button routerLink="bookings">booking</a>
-  <div class="burger">
-    <mat-icon>subject</mat-icon>
-  </div>
-</div>
-</mat-toolbar>
+     <a class="nav-links" style="color: #586058; background-color: #B8DC8A " mat-button routerLink="bookings">booking</a>
+   <div class="burger">
+     <mat-icon>subject</mat-icon>
+   </div>
+ </div>
+ </mat-toolbar>
 
-<div class="banner">
-  <img class="bannerimg" src="assets/banner-v2.png">
-  <!--<img class="bannerimg" src="assets/fysio%20banner.png">-->
+ <div class="banner">
+   <img class="bannerimg" src="assets/banner-v2.png">
+   <!--<img class="bannerimg" src="assets/fysio%20banner.png">-->
 </div>
 </header>
 
