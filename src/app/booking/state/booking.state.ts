@@ -34,7 +34,6 @@ export class BookingState {
   getAvailableTimesOnDateSelected(ctx: StateContext<BookingStateModel>, at: ListenForAvailableTimes): void {
     this.listenerUnsub = this.bookingService.listenForAvailableTimes()
       .subscribe(availableTimes => {
-        console.log('@Action(ListenForAvailableTimes) length' + availableTimes.length)
         ctx.dispatch(new UpdateAvailableTimes(availableTimes));
       });
   }

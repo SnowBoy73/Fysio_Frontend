@@ -52,9 +52,9 @@ export class BookingComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Booking Component Initialised');
+    this.store.dispatch(new ListenForAvailableTimes());
     this.bookingService.connect(); // MUY IMPORTANTÉ!!
     this.selectedTime = '9:30'
-    this.store.dispatch(new ListenForAvailableTimes());
     this.bookingService.listenForNewBooking()
       .pipe(
         takeUntil(this.unsubscribe$)
@@ -176,7 +176,6 @@ export class BookingComponent implements OnInit {
       date: this.selected,
       duration: this.selectetDuration
     }
-    //this.store.dispatch(new UpdateAvailableTimes(dateEnquiry))  // new
     this.bookingService.postSelectedDate(dateEnquiry);
   }
 
