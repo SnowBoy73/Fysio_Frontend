@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgxsModule} from '@ngxs/store';
 import {BookingState} from './state/booking.state';
 import {environment} from '../../environments/environment';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {environment} from '../../environments/environment';
         MatFormFieldModule,
         FormsModule,
         ReactiveFormsModule,
+        MatDialogModule,
         NgxsModule.forFeature([BookingState])
     ]
 })

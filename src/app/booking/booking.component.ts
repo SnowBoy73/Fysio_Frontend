@@ -11,6 +11,8 @@ import {FormControl, Validators} from "@angular/forms";
 import {Select, Store} from '@ngxs/store';
 import {ListenForAvailableTimes, StopListeningForAvailableTimes} from './state/booking.actions';
 import {BookingState} from './state/booking.state';
+import {MatDialog} from "@angular/material/dialog";
+import {DialogComponent} from "../dialog/dialog.component";
 
 
 @Component({
@@ -24,6 +26,8 @@ export class BookingComponent implements OnInit {
   unsubscribe$ = new Subject();
   selectetTreatment = '';
   selectetDuration = 1;
+  selectedTime = '';
+
 
   stepOne = false;
   stepTwo= false;
@@ -31,7 +35,7 @@ export class BookingComponent implements OnInit {
 
   selected: any;
   selectedDate: any;
-  selectedTime: any;
+  //selectedTime: any;
 
   Email = new FormControl('');
   phone = new FormControl('');
@@ -40,6 +44,16 @@ export class BookingComponent implements OnInit {
   postcode = new FormControl('');
   notes = new FormControl('');
 
+  //delete form
+  deleteID = new FormControl('');
+  deletePhone = new FormControl('');
+  deleteEmail = new FormControl('');
+  // mock
+  // availableTimesOnDateSelected  <--- use real data in html
+  mocktimes = ['9','9.30','10','10,30','11','11.30']
+
+
+
   bookingSlotDuration: number = 30;  // minutes in a booking slot - get from admin table in DB later
 
   @Select(BookingState.availableTimesOnDateSelected) availableTimesOnDateSelected$: Observable<string[]> | undefined;
@@ -47,6 +61,7 @@ export class BookingComponent implements OnInit {
   constructor(
     private store: Store,
     private bookingService: BookingService,
+    private dialog: MatDialog
     ) {}
 
 
@@ -54,7 +69,11 @@ export class BookingComponent implements OnInit {
     console.log('Booking Component Initialised');
     this.store.dispatch(new ListenForAvailableTimes());
     this.bookingService.connect(); // MUY IMPORTANTÉ!!
+
     this.selectedTime = '9:30'
+
+    this.store.dispatch(new ListenForAvailableTimes());
+
     this.bookingService.listenForNewBooking()
       .pipe(
         takeUntil(this.unsubscribe$)
@@ -140,8 +159,10 @@ export class BookingComponent implements OnInit {
       notes: this.notes.value, // null to start with. Replaced after info is entered
       duration: this.selectetDuration
     }
+    this.dialog.open(DialogComponent);
    console.log(this.Email.value, this.phone.value,this.address.value,this.city.value,this.postcode.value,this.notes.value);
      this.bookingService.postBooking(bookingPeriod);
+     return bookingPeriod
   }
 
 
@@ -150,7 +171,7 @@ export class BookingComponent implements OnInit {
     if(this.selectetTreatment != null){
       this.stepOne = true;
     }
-
+    return String;
   }
 
 
@@ -159,14 +180,16 @@ export class BookingComponent implements OnInit {
     if(this.selectetDuration != null) {
       this.stepTwo = true;
     }
+    return Time;
   }
 
 
-  bookTime(item: any) {
+  bookTime(item: string) {
     if (this.selected != null) {
       this.selectedTime = item;
       this.stepThree = true;
     }
+    return item;
   }
 
 
@@ -177,24 +200,30 @@ export class BookingComponent implements OnInit {
       duration: this.selectetDuration
     }
     this.bookingService.postSelectedDate(dateEnquiry);
+    return $event;
   }
 
 
   deleteBooking() {
-    const mockDelete: BookingDto = {
-      id: 'f2426a84-8312-4a04-b7d6-a1f2b8606496',
+    //var delID = this.deleteID.toString();
+    //var delEmail = this.deleteEmail.toString();
+    var myNumber : number = + this.deletePhone.value;
+
+    const bookingToDelete: BookingDto = {
+
+      id: this.deleteID.value,  //delID,
       date: '',
       time: '',
       service: '',
-      email: "a", // info entered
-      phone: 1, // info entered
+      email: this.deleteEmail.value, //delEmail, // info entered
+      phone: myNumber, // info entered
       address: '',
       city: '',
       postcode: 0,
       notes: '',
       duration: 0,
     }
-    this.bookingService.deleteBooking(mockDelete);
+    this.bookingService.deleteBooking(bookingToDelete);
   }
 
 

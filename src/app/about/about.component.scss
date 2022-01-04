@@ -1,8 +1,32 @@
 body{
+  display: flex;
+  flex-direction: column;
   padding: 60px;
   color: #586058;
   //586058
     //B8DC8A
   //E4E9DE
   background: #E4E9DE;
+}
+.divrow{
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  box-sizing: border-box;
+  margin: 5px;
+
+}
+
+.txtCol{
+  margin: 15px;
+  width: 50%;
+
+}
+.welcome{
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  margin: 15px;
+  text-align: center;
+  padding-bottom: 200px;
 }

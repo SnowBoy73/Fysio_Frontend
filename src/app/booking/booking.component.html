@@ -82,7 +82,7 @@
         </mat-card>
        </div>
         <div *ngIf="availableTimesOnDateSelected$ | async as availableTimesOnDateSelected" class="col">
-        <mat-card *ngFor="let item of availableTimesOnDateSelected" class="timeSlot"  >
+        <mat-card *ngFor="let item of availableTimesOnDateSelected " class="timeSlot"  >
           <button class="mat-button" matStepperNext (click)="bookTime(item)">{{item}}</button>
         </mat-card>
           <p>Selected date: {{selected}}</p>
@@ -138,20 +138,41 @@
         <h1>vælge en dag før du kan udfylde din bookning</h1>
       </ng-template>
     </mat-step>
+
+
+
+    <mat-step label="AFBUD">
+
+
+    <div  class="inputForm">
+    <mat-form-field appearance="fill">
+      <mat-label >ID Fra Mail</mat-label>
+      <input matInput [formControl]="deleteID" >
+    </mat-form-field>
+    <mat-form-field  appearance="fill">
+      <mat-label  >Telefon Nummer</mat-label>
+      <input matInput [formControl]="deletePhone" >
+    </mat-form-field>
+    <mat-form-field  appearance="fill">
+      <mat-label  >Adrasse</mat-label>
+      <input  matInput  [formControl]="deleteEmail">
+    </mat-form-field>
+    </div>
+    <button class="mat-button" (click)="deleteBooking()"> Mæld Afbud
+    </button>
+    </mat-step>
   </mat-vertical-stepper>
-
-
-
-
 
 </div>
 
 
-<!-- ALan's delete test button - Final version needs user to input date, time, email and phone-->
+
+
+<!-- ALan's delete test button - Final version needs user to input date, time, email and phone
 <button (click)="deleteBooking()">deleteBooking</button>
 
 
-<!--
+
 <div *ngIf="!socketId"
      class="warn-text-colour"
      style="font-family: cursive"

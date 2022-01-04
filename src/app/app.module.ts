@@ -20,12 +20,18 @@ import {MatNativeDateModule} from "@angular/material/core";
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCommonModule} from '@angular/material/core';
+import {MatMenuModule} from '@angular/material/menu';
+
 import { AngularFireModule } from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {HttpClientModule} from '@angular/common/http';
+
 import {BookingState} from './booking/state/booking.state';
+import { DialogComponent } from './dialog/dialog.component';
 //import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
-import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
+//import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
+
+
 
 //const config: SocketIoConfig = { url: 'http://localhost:3004', options: {} };
 const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
@@ -34,7 +40,9 @@ const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
 @NgModule({
   declarations: [
     AppComponent,
+    DialogComponent,
   ],
+  entryComponents:[DialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -45,7 +53,7 @@ const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
       developmentMode: !environment.production
     }),
     //NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsLoggerPluginModule.forRoot(),
+    //NgxsLoggerPluginModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     BrowserAnimationsModule,
@@ -61,7 +69,11 @@ const config: SocketIoConfig = { url: environment.backendUrl, options: {} };
     MatFormFieldModule,
     MatCommonModule,
     MatSidenavModule,
+    MatMenuModule,
+
     MatDatepickerModule
+
+
 
   ],
   providers: [],
