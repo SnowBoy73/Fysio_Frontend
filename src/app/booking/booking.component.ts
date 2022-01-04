@@ -204,17 +204,17 @@ export class BookingComponent implements OnInit {
 
 
   deleteBooking() {
-    var delID = this.deleteID.toString();
-    var delEmail = this.deleteEmail.toString();
-    var myNumber : number = + this.deletePhone
+    //var delID = this.deleteID.toString();
+    //var delEmail = this.deleteEmail.toString();
+    var myNumber : number = + this.deletePhone.value;
 
-    const mockDelete: BookingDto = {
+    const bookingToDelete: BookingDto = {
 
-      id: delID,
+      id: this.deleteID.value,  //delID,
       date: '',
       time: '',
       service: '',
-      email: delEmail, // info entered
+      email: this.deleteEmail.value, //delEmail, // info entered
       phone: myNumber, // info entered
       address: '',
       city: '',
@@ -222,7 +222,7 @@ export class BookingComponent implements OnInit {
       notes: '',
       duration: 0,
     }
-    this.bookingService.deleteBooking(mockDelete);
+    this.bookingService.deleteBooking(bookingToDelete);
   }
 
 
