@@ -82,7 +82,7 @@
         </mat-card>
        </div>
         <div *ngIf="availableTimesOnDateSelected$ | async as availableTimesOnDateSelected" class="col">
-        <mat-card *ngFor="let item of mocktimes " class="timeSlot"  >
+        <mat-card *ngFor="let item of availableTimesOnDateSelected " class="timeSlot"  >
           <button class="mat-button" matStepperNext (click)="bookTime(item)">{{item}}</button>
         </mat-card>
           <p>Selected date: {{selected}}</p>
