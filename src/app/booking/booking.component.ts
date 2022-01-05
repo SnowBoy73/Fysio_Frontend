@@ -204,9 +204,9 @@ export class BookingComponent implements OnInit {
 
 
   deleteBooking() {
-    var delID = this.deleteID.toString();
+    var delID =  this.deleteID.toString();
     var delEmail = this.deleteEmail.toString();
-    var myNumber : number = + this.deletePhone
+    var myNumber : number = + this.deletePhone.value
 
     const mockDelete: BookingDto = {
 
