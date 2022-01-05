@@ -26,7 +26,9 @@ export class AppComponent {
    this.allServices = [
      {id: '1', name: 'Helbredsorienteret fysiotarpi', duration: '30', hourlyRate: 500, info1: 'info1', info2: 'info2', info3: 'info3'},
      {id: '1', name: 'Akupunktur', duration: '30', hourlyRate: 500, info1: 'info1', info2: 'info2', info3: 'info3'},
-     {id: '1', name: 'Fysioterpeutisk massage', duration: '30', hourlyRate: 500, info1: 'info1', info2: 'info2', info3: 'info3'}
+     {id: '1', name: 'Fysioterpeutisk massage', duration: '30', hourlyRate: 500, info1: 'info1', info2: 'info2', info3: 'info3'},
+     {id: '1', name: 'Tilrettelæggelse af træningsprogram', duration: '30', hourlyRate: 500, info1: 'info1', info2: 'info2', info3: 'info3'},
+     {id: '1', name: 'Sport og performance optimering', duration: '30', hourlyRate: 500, info1: 'info1', info2: 'info2', info3: 'info3'}
    ]
   }
 
@@ -46,6 +48,7 @@ export class AppComponent {
   selectedTreatment(treatment: string) {
 
     for (let i = 0; i < this.allServices.length; i++) {
+      console.log(this.allServices)
       if(this.allServices[i].name == treatment){
         this.selectedService = this.allServices[i];
         console.log(this.allServices[i])

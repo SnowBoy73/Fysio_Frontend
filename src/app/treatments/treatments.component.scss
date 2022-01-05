@@ -62,3 +62,10 @@ body{
   box-sizing: border-box;
   align-items: center;
 }
+
+.banner_optimering {
+  background-image: url("../../../src/assets/sport_optimering_crop.png");
+  height: 400px;
+  background-size: cover;
+  background-position: bottom;
+}

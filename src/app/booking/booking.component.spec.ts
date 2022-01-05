@@ -36,7 +36,7 @@ describe('BookingComponent', () => {
   })
   // supose to fail
   it('selectetTreatment fail ', ()=>{
-    expect(component.selectedTreatment('Massage')).toBe('Traning optimering');
+    expect(component.selectedTreatment('Massage')).not.toBe('Traning optimering');
   })
 
   it('selectedDuration ', ()=>{
@@ -45,7 +45,7 @@ describe('BookingComponent', () => {
 
   // supose to fail
   it('selectedDuration fail ', ()=>{
-    expect(component.selectedDuration(60)).toBe(50);
+    expect(component.selectedDuration(60)).not.toBe(50);
   })
   //look why fail ?
 
@@ -54,7 +54,7 @@ describe('BookingComponent', () => {
   })
 
   it('bookTime fail ', ()=>{
-    expect(component.bookTime('60')).toBe('50');
+    expect(component.bookTime('60')).not.toBe('50');
   })
 
 
