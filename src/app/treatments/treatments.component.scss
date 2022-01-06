@@ -69,3 +69,29 @@ body{
   background-size: cover;
   background-position: bottom;
 }
+
+.banner_tilret {
+  background-image: url("../../../src/assets/træning.png");
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.divrow{
+  alignment: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.txtCol{
+  margin: 15px;
+  text-align: center;
+  max-width: 60%;
+}
+.mat-button{
+  background: #8dc43e;
+  width: 30%;
+  align-content: center;
+  margin: 8px;
+}
