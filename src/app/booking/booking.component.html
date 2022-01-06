@@ -74,36 +74,28 @@
 
     <!-- step 3 booking calender and times -->
     <mat-step  label="vælge dag"  [completed] = stepThree >
+      <div class="container">
 
-      <div *ngIf="selectetDuration != 1; else choseDuration " class="container">
+      <div *ngIf="selectetDuration != 1; else choseDuration " class="row">
         <div  class="col">
         <mat-card class="calenderbig" >
           <mat-calendar (selectedChange)="postSelectedDate($event)"></mat-calendar>
         </mat-card>
 
-<!--          <mat-form-field appearance="fill">-->
-<!--            <mat-label>Choose a date</mat-label>-->
-<!--            <input matInput [matDatepicker]="picker">-->
-<!--            <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>-->
-<!--            <mat-datepicker  #picker></mat-datepicker>-->
-<!--          </mat-form-field>-->
-
-
+          <mat-form-field class="smallDate" appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" (dateInput)="postSelectedDate($event)">
+            <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker  #picker  ></mat-datepicker>
+          </mat-form-field>
        </div>
 
-        <div *ngIf="availableTimesOnDateSelected$ | async as availableTimesOnDateSelected" class="col">
+        <div class="col">
+        <div *ngIf="availableTimesOnDateSelected$ | async as availableTimesOnDateSelected">
         <mat-card  *ngFor="let item of availableTimesOnDateSelected " class="timeSlot"  >
           <button class="mat-button" matStepperNext (click)="bookTime(item)">{{item}}</button>
         </mat-card>
-
-<!--          <button class="smallTime" mat-button  [matMenuTriggerFor]="menu">Tider</button>-->
-<!--          <mat-menu #menu="matMenu">-->
-<!--            <a mat-menu-item *ngFor="let item of mocktimes">-->
-<!--              <button class="mat-button" matStepperNext (click)="bookTime(item)">{{item}}</button>-->
-<!--            </a>-->
-<!--          </mat-menu>-->
-
-
+        </div>
         </div>
 
       </div>
@@ -111,7 +103,8 @@
         <h1>
           valge en længde af tid før en dag kan vælges
         </h1>
-      </ng-template>
+      </ng-template>,
+      </div>
     </mat-step>
 
 
@@ -147,7 +140,7 @@
         <input matInput [formControl]="notes">
       </mat-form-field>
       </div>
-        <div>
+        <div class="bnwrap">
           <button class="mat-button" (click)="postBooking()">Book Tiden</button>
         </div>
 
@@ -177,8 +170,10 @@
       <input  matInput  [formControl]="deleteEmail">
     </mat-form-field>
     </div>
-    <button class="mat-button" (click)="deleteBooking()"> Mæld Afbud
-    </button>
+      <div class="bnwrap">
+        <button class="mat-button" (click)="deleteBooking()"> Mæld Afbud</button>
+      </div>
+
     </mat-step>
   </mat-vertical-stepper>
 

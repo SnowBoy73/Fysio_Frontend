@@ -62,14 +62,18 @@ body{
 }
 
 .container{
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
   max-width: 1170px;
   margin:auto;
-  align-items: center;
-
 }
+//.container{
+//  display: flex;
+//  flex-direction: row;
+//  box-sizing: border-box;
+//  max-width: 1170px;
+//  margin:auto;
+//  align-items: center;
+//
+//}
 .timeSlot{
   display: flex;
   flex-direction: column;
@@ -86,16 +90,17 @@ body{
   text-align: center;
 
 }
+.smallDate{
+  display: none;
+  width: 80%;
+}
 
-.mat-button{
-  align-content: center;
-  margin: 5px;
-  text-align: center;
-  margin-inside: 5px;
-  align-items: center;
+.bnwrap{
+  background-color: #8dc43e;
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   flex-direction: column;
-  background-color: #B8DC8A;
 
 }
 
@@ -116,13 +121,13 @@ body{
 
 @media(max-width: 880px){
 
-  .timeSlot{
+  .col{
+    width: 100%;
+  }
+  .calenderbig{
     display: none;
   }
-  //.calenderbig{
-  //  display: none;
-  //}
-  .soloLogo{
+  .smallDate{
     display: block;
   }
 }
