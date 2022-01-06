@@ -37,3 +37,50 @@ body {
   text-align: center;
   max-width: 60%;
 }
+
+table{
+margin: 50px;
+}
+th{
+  text-align: left;
+}
+
+table,th,td{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.tablepng{
+ max-width: 320px;
+
+}
+.tablerow{
+  alignment: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  display: none;
+}
+
+@media(max-width: 760px){
+
+  table{
+    margin: 0px;
+  }
+}
+@media(max-width: 470px){
+
+  table{
+    display: none;
+  }
+
+  .tablerow{
+    alignment: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+   
+  }
+
+
+}

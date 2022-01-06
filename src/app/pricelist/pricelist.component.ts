@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pricelist.component.scss']
 })
 export class PricelistComponent implements OnInit {
+  dataSource: any;
 
   constructor() { }
 
