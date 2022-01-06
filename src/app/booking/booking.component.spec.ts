@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BookingComponent } from './booking.component';
 import {SocketIoConfig, SocketIoModule} from "ngx-socket-io";
 import {environment} from "../../environments/environment";
@@ -34,27 +33,26 @@ describe('BookingComponent', () => {
   it('selectetTreatment ', ()=>{
     expect(component.selectedTreatment('Massage')).toBe(component.selectetTreatment);
   })
-  // supose to fail
+  // supposed to fail
   it('selectetTreatment fail ', ()=>{
-    expect(component.selectedTreatment('Massage')).toBe('Traning optimering');
+    expect(component.selectedTreatment('Massage')).not.toBe('Traning optimering');
   })
 
   it('selectedDuration ', ()=>{
     expect(component.selectedDuration(60)).toBe(component.selectetDuration);
   })
 
-  // supose to fail
+  // supposed to fail
   it('selectedDuration fail ', ()=>{
-    expect(component.selectedDuration(60)).toBe(50);
+    expect(component.selectedDuration(60)).not.toBe(50);
   })
-  //look why fail ?
 
   it('bookTime ', ()=>{
     expect(component.bookTime('10.30')).toBe(component.selectedTime);
   })
 
   it('bookTime fail ', ()=>{
-    expect(component.bookTime('60')).toBe('50');
+    expect(component.bookTime('60')).not.toBe('50');
   })
 
 
