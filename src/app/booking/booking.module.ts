@@ -13,7 +13,7 @@ import {NgxsModule} from '@ngxs/store';
 import {BookingState} from './state/booking.state';
 import {environment} from '../../environments/environment';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -30,6 +30,7 @@ import {MatDialogModule} from '@angular/material/dialog';
         FormsModule,
         ReactiveFormsModule,
         MatDialogModule,
+      MatMenuModule,
         NgxsModule.forFeature([BookingState])
     ]
 })

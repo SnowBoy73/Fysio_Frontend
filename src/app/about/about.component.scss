@@ -1,12 +1,19 @@
 body{
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 0px;
   color: #586058;
   //586058
     //B8DC8A
   //E4E9DE
   background: #E4E9DE;
+}
+.banner{
+  background-image: url("../../../src/assets/aboutklinik.png");
+  height: 400px;
+  background-size: cover;
+  background-position: top;
+
 }
 
 .profilepng{

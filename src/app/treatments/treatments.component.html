@@ -6,34 +6,109 @@
   <div class="info3"> {{selectedTreatment.info3}}</div>
 </div>-->
 
+
+<div *ngIf="selectedTreatment.name === 'Helbredsorienteret fysiotarpi'">
+  <div class="banner_helbred">
+  </div>
+  <div class="divrow">
+    <h1 class="txtCol">
+      Fysioterapi er ikke bare bløddelsbehandling eller øvelser - det er en inddragelse af dig i en meningsfuld behandling
+     </h1>
+    <h2 class="txtCol">
+      Hos FysioPerformance får du en helhedsorienteret behandling, der tager udgangspunkt i dig, dit nuværende ståsted i livet og din dagligdag, med et mål om at finde den bedst mulige løsning på dine problemstillinger.
+      Målet med behandlingen hos FysioPerformance er at vejlede og hjælpe dig med at få styr på årsagen bag dine smerter. Vi ønsker således, at dine smerter/problematikker ikke kun symptombehandles, men at vi finder årsagen bag og samtidig hjælper dig med at kunne forebygge dine smerter/problematikker fremadrettet og dermed øge chancerne for, at du komme godt retur til din dagligdag med fornyet energi.
+    </h2>
+    <h1 class="txtCol">
+      Hvornår kan fysioterapi være relevant for dig?
+    </h1>
+    <li class="liCol">Hvis du oplever, at du er begrænset i din bevægelighed pga. smerter (ex. I knæ, ryg, nakke eller skulder)</li>
+    <li class="liCol">Hvis du har behov for genoptræning efter en operation</li>
+    <li class="liCol">Hvis du har behov for råd og vejledning i den mest hensigtsmæssige dagligdag ift. kroniske smerter</li>
+    <li class="liCol">Hvis du oplever hovedpine</li>
+    <li class="liCol">Hvis du oplever at have summen/snurren/kriblen ud i arme eller ben</li>
+
+    <h1 class="txtCol">Undersøgelsen er vigtig - uden den, er det hele gætteri!</h1>
+    <h2 class="txtCol">
+      Hos FysioPerformance tages forundersøgelsen meget alvorligt, da det er her samarbejdet med dig starter og grundlaget for behandlingen bygges. Du er således inddraget i din egen behandling fra start, når du møder os i FysioPerformance.
+
+      En grundig undersøgelse danner grundlag for diagnosticeringen og den efterfølgende behandling, således den bliver målrettet din dagligdag og dine muligheder, med udgangspunkt i den nyeste fysioterapeutiske viden.
+    </h2>
+
+    <h1 class="txtCol">
+      Forløbet
+    </h1>
+    <li class="liCol">Gennemgang af din historik, samt kroppens og din påvirkning af problemstillingen</li>
+    <li class="liCol">Indledende undersøgelse</li>
+    <li class="liCol">Dybdegående undersøgelse ud fra de fund fysioterapeuten gør sig</li>
+    <li class="liCol">Test af behandlingsstrategi</li>
+    <li class="liCol">Sammen udarbejder du og fysioterapeuten en plan ud fra problematikken og behandlingsstrategien</li>
+    <li class="liCol">Gennemgang af øvelser udvalgt og tilpasset til dig i forhold til din problematik</li>
+    <li class="liCol">Klarhed omkring forløbet</li>
+    <li class="liCol">Klarlæg næste konsultation </li>
+
+    <button class="mat-button"mat-button routerLink="bookings" > Book Nu </button>
+  </div>
+</div>
+
+
+<div *ngIf="selectedTreatment.name === 'Akupunktur'">
+  <div class="banner_akupunktur">
+  </div>
+  <div class="divrow">
+    <h1 class="txtCol">
+      Oplever du smerter i eksempelvis ryg, skulder, albue, nakke eller ben? Eller lider du måske af hovedpine eller leddegigt? Så kunne behandling med akupunktur måske være en mulighed for dig.
+
+      Akupunktur er en af de ældste og mest anvendte behandlingsformer i verden, og har sin oprindelse i Kina, hvor den er baseret på traditionel kinesisk medicin (TCM). Behandlingsformen indebærer at behandleren indsætter tynde nåle i særlige punkter, der har til formål at forebygge eller behandle sygdomme og/eller smerter.
+
+      For at klarlægge om akupunktur som behandlingsform har den ønskede effekt, skal du forvente minimum 4-5 behandlinger, hvorefter effekten af behandlingen vurderes med henblik på, om denne skal fortsættes, afsluttes eller anden behandling skal tages i brug.
+
+      I forlængelse af ovenstående, gør vi opmærksom på, at behandling med akupunktur ikke står alene. Vi ser i klinikken de absolut bedste resultater, når behandlingsformen kombineres med øvelser/bevægelse.
+     </h1>
+    <button class="mat-button"mat-button routerLink="bookings" > Book Nu </button>
+  </div>
+</div>
+
 <div *ngIf="selectedTreatment.name === 'Fysioterpeutisk massage'">
-  <h1>
-    Fysioterapeutisk massage:
-    Det gavner dit velvære og øger kroppens cirkulation at få massage. Massagen hos FysioPerformance udføres altid af en fysioterapeut, således kan det samtidig vurderes om en anden behandling vil gavne din situation.
+  <div class="banner_massage">
+  </div>
+  <div class="divrow">
+    <h1 class="txtCol">
+      Trænger du til at blive ”løsnet op”? Eller skal en af dine kære forkæles lidt ekstra? Så kunne fysioterapeutisk massage hos FysioPerformance være en god mulighed!
 
-    I en hverdag med fart på med arbejde, sport, skole og hvad dagen ellers bringer af gøremål, kan din krop spænde op og være i et forstadie til en eventuel problematik.
+      I en travl hverdag, hvor der både kan være fart på job, sport, studie, familie og hvad dagen ellers bringer af gøremål, kan du opleve at kroppen begynder at spænde op, hvilket kan være et forstadie til en evt. problematik, hvis dette har rod i uhensigtsmæssige bevægemønstre i din hverdag.
 
-    Fysiomassage kan med fordel kombineres med et genoptræningsforløb.
+      Hos FysioPerformance tilbyder vi fysioterapeutisk massage, der har til formål at øge kroppens cirkulation og gavne dit velvære. Massagen hos FysioPerformance udføres altid af en fysioterapeut, der således også kan vurdere og vejlede dig i supplerende behandling, der kan hjælpe dig med at ”løsne kroppen op” og øge din bevægelighed.
 
-  </h1>
+      Tøv ikke med at tage kontakt til os i FysioPerformance, hvis du oplever spændinger i kroppen, og har brug for en grundig gennemgang af kroppen med henblik på at øge velværen i din dagligdag. KONTAKTOPLYSNINGER
+
+
+
+      Det gavner dit velvære og øger kroppens cirkulation at få massage. Massagen hos FysioPerformance udføres altid af en fysioterapeut, således kan det samtidig vurderes om en anden behandling vil gavne din situation.
+
+      I en hverdag med fart på med arbejde, sport, skole og hvad dagen ellers bringer af gøremål, kan din krop spænde op og være i et forstadie til en eventuel problematik.
+
+      Fysiomassage kan med fordel kombineres med et genoptræningsforløb.
+    </h1>
+    <button class="mat-button"mat-button routerLink="bookings" > Book Nu </button>
+  </div>
 </div>
 
 <div *ngIf="selectedTreatment.name === 'Sport og performance optimering'">
   <div class="banner_optimering">
   </div>
-  <h1>
-    Fysioterapeutisk massage:
-    Det gavner dit velvære og øger kroppens cirkulation at få massage. Massagen hos FysioPerformance udføres altid af en fysioterapeut, således kan det samtidig vurderes om en anden behandling vil gavne din situation.
+  <div class="divrow">
+  <h1 class="txtCol">
+    Er du idrætsudøver og søger du at optimere din fysik, så du har bedre forudsætninger for at præstere i din sport? Så er et sport- og performance optimeringsforløb hos FysioPerformace lige noget for dig!
 
-    I en hverdag med fart på med arbejde, sport, skole og hvad dagen ellers bringer af gøremål, kan din krop spænde op og være i et forstadie til en eventuel problematik.
+    I vores pakke ”Sport- og Performance Optimering” får du en komplet screening af din krops fysiske formåen (fysiologiske kapacitet), samt en grundig analyse heraf. Screeningen, der laves, er udarbejdet af FysioPerformance, på baggrund af flere års erfaring med idrætsudøvere i forskellige idrætsgrene, og har til formål at give os et indblik i din nuværende fysiske tilstand, således vi kan tilrettelægge træningen på bedste vis for dig i jagten på præstationsoptimering. Derudover får du et specialdesignet træningsprogram, der tager udgangspunkt i din test, samt dine mål for performance. Træningsprogrammet gennemgås altid på klinikken, således vi i fællesskab sikrer os, at øvelserne udføres teknisk korrekt. Afslutningsvist tilbydes altid en opfølgning, samt mulighed for retest, hvis dette ønskes.
 
-    Fysiomassage kan med fordel kombineres med et genoptræningsforløb.
-
+    Er du blevet interesseret i at høre mere om mulighederne i et Sport- og Performance optimeringsforløb, så tøv ikke med at tage kontakt til os på MAILADRESSE, og få en uforpligtende samtale, der tager udgangspunkt i dig og dine mål, samt en gensidig dialog omkring, hvad FysioPerformance kan tilbyde dig i jagten på at nå dit mål.
   </h1>
+    <button class="mat-button"mat-button routerLink="bookings" > Book Nu </button>
+  </div>
 </div>
 
-
-
+<!--             TRENINGS PROGRAPM               -->
 <div  *ngIf="selectedTreatment.name === 'Tilrettelæggelse af træningsprogram'">
   <div class="banner_tilret">
   </div>
@@ -52,7 +127,7 @@
 
     Programmerne laves således, at de er af 6 ugers varighed pr. program.
   </h2>
-    <button class="mat-button" (click)="$event" > Book Nu </button>
+<!--    <button class="mat-button"mat-button routerLink="bookings" > Book Nu </button>-->
   </div>
 </div>
 

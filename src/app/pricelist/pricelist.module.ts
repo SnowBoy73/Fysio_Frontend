@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PricelistRoutingModule } from './pricelist-routing.module';
 import { PricelistComponent } from './pricelist.component';
-
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,9 @@ import { PricelistComponent } from './pricelist.component';
   ],
   imports: [
     CommonModule,
+    MatTableModule,
     PricelistRoutingModule
+
   ]
 })
 export class PricelistModule { }

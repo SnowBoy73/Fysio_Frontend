@@ -77,15 +77,43 @@ body{
   background-position: center;
   background-repeat: no-repeat;
 }
+.banner_akupunktur{
+  background-image: url("../../../src/assets/akupunktur.png");
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.banner_massage{
+  background-image: url("../../../src/assets/fysmasage2.png");
+  height: 400px;
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+.banner_helbred{
+  background-image: url("../../../src/assets/helbredsfys.png");
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 .divrow{
   alignment: center;
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 .txtCol{
   margin: 15px;
+  text-align: center;
+  max-width: 60%;
+}
+.liCol{
+  margin: 2px;
   text-align: center;
   max-width: 60%;
 }

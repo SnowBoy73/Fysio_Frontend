@@ -19,11 +19,33 @@
        <button (click)="selectedTreatment('Tilrettelæggelse af træningsprogram')" mat-menu-item>Tilrettelæggelse af træningsprogram</button>
        <button (click)="selectedTreatment('Sport og performance optimering')" mat-menu-item>Sport og performance optimering</button>
      </mat-menu>
-
      <a class="nav-links" style="color: #586058; background-color: #B8DC8A " mat-button routerLink="bookings">booking</a>
+
+
+
    <div class="burger">
-     <mat-icon>subject</mat-icon>
+     <button  mat-icon-button  [matMenuTriggerFor]="ost">
+       <mat-icon>subject</mat-icon>
+     </button>
+     <mat-menu #ost="matMenu">
+       <a mat-menu-item routerLink="eliteIdræt">Elite idræt</a>
+       <a  mat-menu-item routerLink="produkter">Produkter</a>
+       <a mat-menu-item routerLink="about">Om Klinikken</a>
+       <a  mat-menu-item routerLink="pricelists">prislist</a>
+       <button mat-menu-item  [matMenuTriggerFor]="ost2">behandliger</button>
+         <mat-menu #ost2="matMenu">
+           <button (click)="selectedTreatment('Helbredsorienteret fysiotarpi')" mat-menu-item>Helbredsorienteret fysiotarpi</button>
+           <button (click)="selectedTreatment('Akupunktur')" mat-menu-item>Akupunktur</button>
+           <button (click)="selectedTreatment('Fysioterpeutisk massage')" mat-menu-item>Fysioterpeutisk massage</button>
+           <button (click)="selectedTreatment('Tilrettelæggelse af træningsprogram')" mat-menu-item>Tilrettelæggelse af træningsprogram</button>
+           <button (click)="selectedTreatment('Sport og performance optimering')" mat-menu-item>Sport og performance optimering</button>
+         </mat-menu>
+       <a mat-menu-item style="color: #586058; background-color: #B8DC8A " routerLink="bookings">booking</a>
+     </mat-menu>
+
    </div>
+
+
  </div>
  </mat-toolbar>
 
@@ -43,30 +65,29 @@
       <div class="footer-col">
         <h4>kontakt Info</h4>
         <ul>
-          <li><a  href="#"> <mat-icon class="contact-icons" >phone</mat-icon> +4560566560 </a></li>
-          <li><a href="#"> <mat-icon class="contact-icons" >email</mat-icon> Fysio@gmail.com</a></li>
-          <li><a href="#"> <mat-icon class="contact-icons" >location_on</mat-icon> terpivej 21, 7058 byen</a></li>
-          <li><a href="#"> <mat-icon class="contact-icons" >house</mat-icon> CVR: 5004458</a></li>
+          <li><a  href="tel:40179301"> <mat-icon class="contact-icons" >phone</mat-icon> +40179301 </a></li>
+          <li><a href="mailto:FysioPerformance@outlook.dk"> <mat-icon class="contact-icons" >email</mat-icon> FysioPerformance@outlook.dk</a></li>
+          <li><a > <mat-icon class="contact-icons" >location_on</mat-icon> Godfredsvej 4, 5200 Odense V</a></li>
+          <li><a > <mat-icon class="contact-icons" >house</mat-icon> CVR: 39565404</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>information</h4>
         <ul>
-          <li><a href="#">om behandling</a></li>
-          <li><a href="#">priser</a></li>
-          <li><a href="#">produkter</a></li>
-          <li><a href="#">Elite idræt</a></li>
-          <li><a href="#">medarbejder</a></li>
+          <li><a routerLink="about">om klinikken</a></li>
+          <li><a routerLink="pricelists">priser</a></li>
+          <li><a routerLink="produkter">produkter</a></li>
+          <li><a routerLink="eliteIdræt">Elite idræt</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Behandlinger</h4>
         <ul>
-          <li><a href="#">fysioterapi</a></li>
-          <li><a href="#">Akupunktur</a></li>
-          <li><a href="#">massage</a></li>
-          <li><a href="#">træningsprogram</a></li>
-          <li><a href="#">optimering</a></li>
+          <li><a (click)="selectedTreatment('Helbredsorienteret fysiotarpi')">fysioterapi</a></li>
+          <li><a (click)="selectedTreatment('Akupunktur')" >Akupunktur</a></li>
+          <li><a (click)="selectedTreatment('Fysioterpeutisk massage')">massage</a></li>
+          <li><a (click)="selectedTreatment('Tilrettelæggelse af træningsprogram')">træningsprogram</a></li>
+          <li><a (click)="selectedTreatment('Sport og performance optimering')">optimering</a></li>
         </ul>
       </div>
       <div class="footer-col">

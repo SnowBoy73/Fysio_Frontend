@@ -53,6 +53,7 @@ body{
 
 }
 
+
 .col{
   width: 50%;
   padding: 0 15px;
@@ -71,7 +72,31 @@ body{
 }
 .timeSlot{
   display: flex;
+  flex-direction: column;
   text-align: center;
+  width: 80%;
+}
+.smallTime{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 50%;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+
+}
+
+.mat-button{
+  align-content: center;
+  margin: 5px;
+  text-align: center;
+  margin-inside: 5px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  background-color: #B8DC8A;
+
 }
 
 .inputForm{
@@ -84,4 +109,20 @@ body{
 
 }
 
+.calenderbig{
 
+}
+
+
+@media(max-width: 880px){
+
+  .timeSlot{
+    display: none;
+  }
+  .calenderbig{
+    display: none;
+  }
+  .soloLogo{
+    display: block;
+  }
+}
