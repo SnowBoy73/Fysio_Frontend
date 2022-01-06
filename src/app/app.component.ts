@@ -35,11 +35,11 @@ export class AppComponent {
 
   ngOnInit(): void {
     console.log('App Component Initialised');
-    this.sharedService.getAllServices().then( (data) => {
-      console.log(data);
-      this.allServices = data;
-      console.log('App Component this.allServices = ' + this.allServices);
-    });
+    // this.sharedService.getAllServices().then( (data) => {
+    //   console.log(data);
+    //   this.allServices = data;
+    //   console.log('App Component this.allServices = ' + this.allServices);
+    // });
 
  }
 
